@@ -15,6 +15,6 @@ export default {
 @import './assets/css/common.less';
 
 body {
-  background-color: #fbf9fe;
+  background-color: #ffffff;
 }
 </style>
