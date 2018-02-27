@@ -5,6 +5,10 @@ import Home from '@/views/Home'
 import MyOrder from '@/views/MyOrder'
 import Individual from '@/views/Individual'
 
+// 登录注册
+import Login from '@/views/Login'
+import Registe from '@/views/Registe'
+
 Vue.use(Router)
 
 export default new Router({
@@ -30,6 +34,16 @@ export default new Router({
           component: Individual
         }
       ]
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
+    },
+    {
+      path: '/registe',
+      name: 'Registe',
+      component: Registe
     }
   ]
 })
