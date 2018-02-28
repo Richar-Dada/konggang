@@ -8,6 +8,8 @@ import Individual from '@/views/Individual'
 // 登录注册
 import Login from '@/views/Login'
 import Registe from '@/views/Registe'
+import CertificateConfirm from '@/views/CertificateConfirm'
+import ResetPassword from '@/views/ResetPassword'
 
 Vue.use(Router)
 
@@ -35,15 +37,9 @@ export default new Router({
         }
       ]
     },
-    {
-      path: '/login',
-      name: 'Login',
-      component: Login
-    },
-    {
-      path: '/registe',
-      name: 'Registe',
-      component: Registe
-    }
+    { path: '/login', name: 'Login', component: Login },
+    { path: '/registe', name: 'Registe', component: Registe },
+    { path: '/certificateconfirm', name: 'CertificateConfirm', component: CertificateConfirm },
+    { path: '/resetpassword', name: 'ResetPassword', component: ResetPassword }
   ]
 })

@@ -2,15 +2,14 @@
   <div class="login">
     <x-header title="注册账号"></x-header>
     <group class="input-list">
-      <x-input title="用户名" label-width="100px" :is-type="be2333" placeholder="必须输入数字"></x-input>
-      <x-input title="密 码" label-width="100px" :is-type="be2333" placeholder="必须输入数字"></x-input>
+      <x-input title="用户名" label-width="2.5rem" :is-type="be2333" placeholder="必须输入数字"></x-input>
+      <x-input title="密 码" label-width="2.5rem" :is-type="be2333" placeholder="必须输入数字"></x-input>
+      <x-input title="密码确认" label-width="2.5rem" :is-type="be2333" placeholder="请确认密码"></x-input>
+      <x-input title="手机号码" label-width="2.5rem" :is-type="be2333" placeholder="请输入手机号码"></x-input>
+      <x-input title="身份证" label-width="2.5rem" :is-type="be2333" placeholder="请输入身份证"></x-input>
     </group>
     <div class="function-box">
-      <x-button class="submit-btn" type="primary" link="/demo">登 录</x-button>
-      <flexbox :gutter="0" wrap="wrap">
-        <flexbox-item :span="1/2"><div class="flex-demo registe">注册账号</div></flexbox-item>
-        <flexbox-item :span="1/2"><div class="flex-demo forgetPassword">忘记密码</div></flexbox-item>
-      </flexbox>
+      <x-button class="submit-btn" type="primary" link="/demo">注 册</x-button>
     </div>
     
   </div>
