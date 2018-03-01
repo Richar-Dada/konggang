@@ -6,7 +6,7 @@
       <x-input title="密 码" label-width="100px" :is-type="be2333" placeholder="必须输入数字"></x-input>
     </group>
     <div class="function-box">
-      <x-button class="submit-btn" type="primary" link="/demo">登 录</x-button>
+      <x-button class="submit-btn" type="primary" @click.native="login">登 录</x-button>
       <flexbox :gutter="0" wrap="wrap">
         <flexbox-item :span="1/2"><div class="flex-demo registe" @click="goRegiste">注册账号</div></flexbox-item>
         <flexbox-item :span="1/2"><div class="flex-demo forgetPassword" @click="goConfirmCertificate">忘记密码</div></flexbox-item>
@@ -18,6 +18,7 @@
 
 <script>
   import { XHeader, XButton, XInput, Flexbox, FlexboxItem, Group } from 'vux'
+  import { login } from '@/service'
 
   export default {
     name: 'login',
@@ -46,6 +47,9 @@
       },
       goConfirmCertificate () {
         this.$router.push('/certificateconfirm')
+      },
+      login () {
+        login()
       }
     }
   }
