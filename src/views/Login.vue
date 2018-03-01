@@ -2,8 +2,8 @@
   <div class="login">
     <x-header title="账号登录"></x-header>
     <group class="input-list">
-      <x-input title="用户名" label-width="100px" :is-type="be2333" placeholder="必须输入数字"></x-input>
-      <x-input title="密 码" label-width="100px" :is-type="be2333" placeholder="必须输入数字"></x-input>
+      <x-input title="用户名" type="text" v-model="username" required label-width="2.5rem" placeholder="请输入用户名"></x-input>
+      <x-input title="密 码" type="password" v-model="password" required label-width="2.5rem" placeholder="请输入密码"></x-input>
     </group>
     <div class="function-box">
       <x-button class="submit-btn" type="primary" @click.native="login">登 录</x-button>
@@ -12,12 +12,12 @@
         <flexbox-item :span="1/2"><div class="flex-demo forgetPassword" @click="goConfirmCertificate">忘记密码</div></flexbox-item>
       </flexbox>
     </div>
-    
+    <toast v-model="loginError" width="6rem" type="text">{{loginErrorMsg}}</toast>
   </div>
 </template>
 
 <script>
-  import { XHeader, XButton, XInput, Flexbox, FlexboxItem, Group } from 'vux'
+  import { XHeader, XButton, XInput, Flexbox, FlexboxItem, Group, Toast } from 'vux'
   import { login } from '@/service'
 
   export default {
@@ -28,20 +28,18 @@
       XInput,
       Flexbox,
       FlexboxItem,
-      Group
+      Group,
+      Toast
     },
     data () {
       return {
-        name: 'dd'
+        username: '',
+        password: '',
+        loginError: false,
+        loginErrorMsg: ''
       }
     },
     methods: {
-      be2333: function (value) {
-        return {
-          valid: value === '2333',
-          msg: 'Must be 2333'
-        }
-      },
       goRegiste () {
         this.$router.push('/registe')
       },
@@ -49,7 +47,21 @@
         this.$router.push('/certificateconfirm')
       },
       login () {
-        login()
+        if (this.username && this.password) {
+          let loginReq = {
+            username: this.username,
+            password: this.password
+          }
+          login(loginReq)
+            .then((res) => {
+              if (res.data.resultCode === 200) {
+                localStorage.setItem('token', res.data.token)
+              } else {
+                this.loginError = true
+                this.loginErrorMsg = res.data.errorMsg
+              }
+            })
+        }
       }
     }
   }
