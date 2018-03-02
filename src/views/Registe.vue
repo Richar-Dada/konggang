@@ -2,22 +2,22 @@
   <div class="login">
     <x-header title="注册账号"></x-header>
     <group class="input-list">
-      <x-input title="用户名" ref="username" label-width="2.5rem" required v-model="username" :is-type="china-name" placeholder="请输入用户名"></x-input>
-      <x-input title="密 码" ref="password" type="password" label-width="2.5rem" required v-model="password" :min="6" placeholder="请输入密码"></x-input>
-      <x-input title="密码确认" ref="password2" type="password" label-width="2.5rem" required v-model="password2" :equal-with="password"></x-input>
-      <x-input title="手机号码" ref="phone" label-width="2.5rem" required v-model="phone" keyboard="number" :is-type="chine-mobile" placeholder="请输入手机号码"></x-input>
+      <x-input title="用户名" ref="username" label-width="2.5rem" required v-model="username" :is-type="beUsername" placeholder="请输入用户名"></x-input>
+      <x-input title="密 码" ref="password" type="password" label-width="2.5rem" required v-model="password" :min="6" :is-type="bePassword" placeholder="密码只支持英文和数字"></x-input>
+      <x-input title="密码确认" ref="password2" type="password" label-width="2.5rem" required v-model="password2" :equal-with="password" :is-type="bePassword" placeholder="请再次输入密码"></x-input>
+      <x-input title="手机号码" ref="phone" label-width="2.5rem" required v-model="phone" keyboard="number" :is-type="bePhone" :max="11" placeholder="请输入手机号码"></x-input>
       <x-input title="身份证" ref="document" label-width="2.5rem" required v-model="document" :is-type="beID" placeholder="请输入身份证"></x-input>
     </group>
     <div class="function-box">
       <x-button class="submit-btn" type="primary" @click.native="registe">注 册</x-button>
     </div>
-    
+    <toast v-model="showToast" width="6rem" type="text">{{toastMsg}}</toast>
   </div>
 </template>
 
 <script>
-  import { XHeader, XButton, XInput, Flexbox, FlexboxItem, Group } from 'vux'
-  import { checkUserID } from '@/utils/validateTool'
+  import { XHeader, XButton, XInput, Flexbox, FlexboxItem, Group, Toast } from 'vux'
+  import { checkUserID, checkUsername, checkPassword, checkPhone } from '@/utils/validateTool'
   import { registe } from '@/service'
 
   export default {
@@ -28,7 +28,8 @@
       XInput,
       Flexbox,
       FlexboxItem,
-      Group
+      Group,
+      Toast
     },
     data () {
       return {
@@ -36,10 +37,33 @@
         password: '',
         password2: '',
         phone: '',
-        document: ''
+        document: '',
+        toastMsg: '',
+        showToast: false
       }
     },
     methods: {
+      beUsername (value) {
+        const result = checkUsername(value)
+        return {
+          valid: result.valid,
+          msg: result.msg
+        }
+      },
+      bePassword (value) {
+        const result = checkPassword(value)
+        return {
+          valid: result.valid,
+          msg: result.msg
+        }
+      },
+      bePhone (value) {
+        const result = checkPhone(value)
+        return {
+          valid: result.valid,
+          msg: result.msg
+        }
+      },
       beID: function (value) {
         const result = checkUserID(value)
         return {
@@ -57,13 +81,18 @@
         if (this._isAllValid()) {
           let registeReq = {
             username: this.username,
-            passwrod: this.password,
+            password: this.password,
             phone: this.phone,
             certificate: this.document
           }
           registe(registeReq)
             .then((res) => {
-              console.log(res)
+              this.showToast = true
+              if (res.data.resultCode === 200) {
+                this.toastMsg = res.data.successMsg
+              } else {
+                this.toastMsg = res.data.errorMsg
+              }
             })
         }
       }
