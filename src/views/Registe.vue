@@ -72,10 +72,18 @@
         }
       },
       _isAllValid () {
-        if (this.$refs.username.valid && this.$refs.password2.valid && this.$refs.password.valid && this.$refs.phone.valid && this.$refs.document.valid) {
-          return true
+        if (this.username && this.password && this.phone && this.document) {
+          if (this.$refs.username.valid && this.$refs.password2.valid && this.$refs.password.valid && this.$refs.phone.valid && this.$refs.document.valid) {
+            return true
+          }
+          this.showToast = true
+          this.toastMsg = '请按规则填写信息'
+          return false
+        } else {
+          this.showToast = true
+          this.toastMsg = '请把信息填写完整'
+          return false
         }
-        return false
       },
       registe () {
         if (this._isAllValid()) {
