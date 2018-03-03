@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  import { XHeader, XButton, XInput, Flexbox, FlexboxItem, Group, Toast } from 'vux'
+  import { XHeader, XButton, XInput, Group, Toast } from 'vux'
   import { checkUserID, checkUsername, checkPassword, checkPhone } from '@/utils/validateTool'
   import { registe } from '@/service'
 
@@ -26,8 +26,6 @@
       XHeader,
       XButton,
       XInput,
-      Flexbox,
-      FlexboxItem,
       Group,
       Toast
     },

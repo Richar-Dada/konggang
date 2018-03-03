@@ -2,18 +2,20 @@
   <div class="login">
     <x-header title="修改账号"></x-header>
     <group class="input-list">
-      <x-input title="新密码" label-width="2.5rem" :is-type="be2333" placeholder="必须输入数字"></x-input>
-      <x-input title="密码确认" label-width="2.5rem" :is-type="be2333" placeholder="请确认密码"></x-input>
+      <x-input title="新密码" ref="password" label-width="2.5rem" v-model="password" :min="6" :is-type="bePassword" placeholder="密码只支持英文和数字"></x-input>
+      <x-input title="密码确认" ref="password2" label-width="2.5rem" v-model="password2" :is-type="bePassword" :equal-with="password" placeholder="请再次输入密码"></x-input>
     </group>
     <div class="function-box">
-      <x-button class="submit-btn" type="primary" link="/demo">确 定</x-button>
+      <x-button class="submit-btn" type="primary" @click.native="resetPassword">确 定</x-button>
     </div>
-    
+    <toast v-model="showToast" width="6rem" type="text">{{toastMsg}}</toast>
   </div>
 </template>
 
 <script>
-  import { XHeader, XButton, XInput, Flexbox, FlexboxItem, Group } from 'vux'
+  import { XHeader, XButton, XInput, Group, Toast } from 'vux'
+  import { checkPassword } from '@/utils/validateTool'
+  import { resetPassword } from '@/service'
 
   export default {
     name: 'login',
@@ -21,21 +23,64 @@
       XHeader,
       XButton,
       XInput,
-      Flexbox,
-      FlexboxItem,
-      Group
+      Group,
+      Toast
     },
     data () {
       return {
-        name: 'dd'
+        password: '',
+        password2: '',
+        showToast: false,
+        toastMsg: ''
       }
     },
     methods: {
-      be2333: function (value) {
+      bePassword (value) {
+        const result = checkPassword(value)
         return {
-          valid: value === '2333',
-          msg: 'Must be 2333'
+          valid: result.valid,
+          msg: result.msg
         }
+      },
+      _isAllValid () {
+        if (this.password && this.password2) {
+          if (this.$refs.password.valid && this.$refs.password2.valid) {
+            return true
+          }
+          this.showToast = true
+          this.toastMsg = '密码不一致'
+          return false
+        } else {
+          this.showToast = true
+          this.toastMsg = '请把信息填写完整'
+          return false
+        }
+      },
+      resetPassword () {
+        if (this._isAllValid()) {
+          const resetPasswordReg = {
+            certificate: sessionStorage.getItem('confirmId'),
+            password: this.password
+          }
+          resetPassword(resetPasswordReg)
+            .then((res) => {
+              this.showToast = true
+              if (res.data.resultCode === 200) {
+                this.toastMsg = res.data.successMsg
+                sessionStorage.removeItem('confirmId')
+                setTimeout(() => {
+                  this.$router.push('/login')
+                }, 1500)
+              } else {
+                this.toastMsg = res.data.errorMsg
+              }
+            })
+        }
+      }
+    },
+    created () {
+      if (!sessionStorage.getItem('confirmId')) {
+        this.$router.push('/')
       }
     }
   }
