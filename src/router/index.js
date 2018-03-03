@@ -21,7 +21,7 @@ export default new Router({
       component: Index,
       children: [
         {
-          path: 'home',
+          path: '',
           name: 'Home',
           component: Home
         },
@@ -40,6 +40,7 @@ export default new Router({
     { path: '/login', name: 'Login', component: Login },
     { path: '/registe', name: 'Registe', component: Registe },
     { path: '/certificateconfirm', name: 'CertificateConfirm', component: CertificateConfirm },
-    { path: '/resetpassword', name: 'ResetPassword', component: ResetPassword }
+    { path: '/resetpassword', name: 'ResetPassword', component: ResetPassword },
+    { path: '*', redirect: '/' }
   ]
 })

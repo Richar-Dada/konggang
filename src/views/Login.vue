@@ -56,6 +56,7 @@
             .then((res) => {
               if (res.data.resultCode === 200) {
                 localStorage.setItem('token', res.data.token)
+                localStorage.setItem('username', res.data.username)
               } else {
                 this.loginError = true
                 this.loginErrorMsg = res.data.errorMsg

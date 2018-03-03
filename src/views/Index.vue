@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <x-header :left-options="{showBack: false}" title="空港城"></x-header>
     <router-view></router-view>
     <tabbar class="tabbar">
       <tabbar-item selected link="/home">
@@ -19,15 +20,14 @@
 </template>
 
 <script>
-  import { Tabbar, TabbarItem, Group, Cell } from 'vux'
+  import { Tabbar, TabbarItem, XHeader } from 'vux'
 
   export default {
     name: 'home',
     components: {
       Tabbar,
       TabbarItem,
-      Group,
-      Cell
+      XHeader
     },
     data () {
       return {
