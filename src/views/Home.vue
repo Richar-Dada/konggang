@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <swiper loop auto :list="demo06_list" :index="demo06_index" @on-index-change="demo06_onIndexChange" height="300px"></swiper>
+    <swiper loop auto :list="demo06_list" :index="demo06_index" @on-index-change="demo06_onIndexChange" height="4rem"></swiper>
     <div class="booking-btn">约</div>
   </div>
 </template>

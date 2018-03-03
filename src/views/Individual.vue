@@ -71,8 +71,8 @@
 <style scoped lang="less">
   @import '../assets/css/base.less';
   .user-inofo{
-    height: 300px;
-    line-height: 300px;
+    height: 200px;
+    line-height: 200px;
     text-align: center;
     background-color: @blue;
     color: #ffffff;
@@ -88,7 +88,7 @@
     border: 5px solid #ffffff;
     box-shadow: 0px 0px 2px #666;
     border-radius: 50%;
-    margin: 60px auto;
+    margin: 40px auto;
     font-size: 28px;
   }
   .grid-center {
