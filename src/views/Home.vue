@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <swiper loop auto :list="demo06_list" :index="demo06_index" @on-index-change="demo06_onIndexChange" height="4rem"></swiper>
-    <div class="booking-btn">约</div>
+    <div class="booking-btn" @click="booking">约</div>
   </div>
 </template>
 
@@ -48,6 +48,13 @@
     methods: {
       demo06_onIndexChange (index) {
         this.demo06_index = index
+      },
+      booking () {
+        if (localStorage.getItem('token')) {
+          this.$router.push('/schedul')
+        } else {
+          this.$router.push('/login')
+        }
       }
     }
   }

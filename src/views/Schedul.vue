@@ -1,0 +1,70 @@
+<template>
+  <div class="schedul">
+    <div style="width: 100%;overflow:scroll;-webkit-overflow-scrolling:touch;">
+      <tab style="width:10rem;" bar-active-color="#668599" :line-width="1">
+        <tab-item selected @on-item-click="getSchedul">{{ dateList[0].date }}</tab-item>
+        <tab-item @on-item-click="getSchedul">{{ dateList[1].date }}</tab-item>
+        <tab-item @on-item-click="getSchedul">{{ dateList[2].date }}</tab-item>
+        <tab-item @on-item-click="getSchedul">{{ dateList[3].date }}</tab-item>
+        <tab-item @on-item-click="getSchedul">{{ dateList[4].date }}</tab-item>
+      </tab>
+    </div>
+    <div class="schedul-list">
+      <div class="schedul-item" v-for="(item, index) in schedulList" :key="index">
+        <p class="schedul-item-text">{{ item.duration }}</p>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  import { Tab, TabItem, Masker } from 'vux'
+  import { getSchedulDate } from '../utils/dateTool'
+  import { getScheList } from '@/service'
+
+  export default {
+    name: 'schedul',
+    components: {
+      Tab,
+      TabItem,
+      Masker
+    },
+    data () {
+      return {
+        dateList: [],
+        schedulList: ''
+      }
+    },
+    methods: {
+      getSchedul (activeIndex) {
+        console.log(activeIndex)
+        getScheList(this.dateList[activeIndex].fullDate)
+          .then((res) => {
+            if (res.data.resultCode === 200) {
+              this.schedulList = res.data.schedulList
+            }
+          })
+      }
+    },
+    created () {
+      this.dateList = getSchedulDate()
+      this.getSchedul(0)
+    }
+  }
+</script>
+
+<style lang="less" scoped>
+  @import '../assets/css/base.less';
+
+  .schedul-item{
+    height: 100px;
+    margin: 10px 10px 0 10px;
+    background-color: @light-blue;
+  }
+  .schedul-item-text{
+    line-height: 100px;
+    text-align: center;
+    font-size: 30px;
+    color: #ffffff;
+  }
+</style>
