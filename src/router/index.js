@@ -4,6 +4,8 @@ import Index from '@/views/Index'
 import Home from '@/views/Home'
 import MyOrder from '@/views/MyOrder'
 import Individual from '@/views/Individual'
+import Booking from '@/views/Booking'
+import Schedul from '@/views/Schedul'
 
 // 登录注册
 import Login from '@/views/Login'
@@ -20,21 +22,11 @@ export default new Router({
       name: 'Index',
       component: Index,
       children: [
-        {
-          path: '',
-          name: 'Home',
-          component: Home
-        },
-        {
-          path: 'myOrder',
-          name: 'MyOrder',
-          component: MyOrder
-        },
-        {
-          path: 'individual',
-          name: 'Individual',
-          component: Individual
-        }
+        { path: '', name: 'Home', component: Home },
+        { path: 'myOrder', name: 'MyOrder', component: MyOrder },
+        { path: 'individual', name: 'Individual', component: Individual },
+        { path: 'booking', name: 'Booking', component: Booking },
+        { path: 'schedul', name: 'Schedul', component: Schedul }
       ]
     },
     { path: '/login', name: 'Login', component: Login },

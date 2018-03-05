@@ -96,6 +96,9 @@
               this.showToast = true
               if (res.data.resultCode === 200) {
                 this.toastMsg = res.data.successMsg
+                setTimeout(() => {
+                  this.$router.push('/login')
+                }, 1500)
               } else {
                 this.toastMsg = res.data.errorMsg
               }

@@ -54,11 +54,15 @@
           }
           login(loginReq)
             .then((res) => {
+              this.loginError = true
               if (res.data.resultCode === 200) {
+                this.loginErrorMsg = res.data.successMsg
                 localStorage.setItem('token', res.data.token)
                 localStorage.setItem('username', res.data.username)
+                setTimeout(() => {
+                  this.$router.push('/')
+                }, 1500)
               } else {
-                this.loginError = true
                 this.loginErrorMsg = res.data.errorMsg
               }
             })
