@@ -25,7 +25,7 @@ export default new Router({
         { path: '', name: 'Home', component: Home },
         { path: 'myOrder', name: 'MyOrder', component: MyOrder },
         { path: 'individual', name: 'Individual', component: Individual },
-        { path: 'booking', name: 'Booking', component: Booking },
+        { path: 'booking/:selectedDate', name: 'Booking', component: Booking, props: true },
         { path: 'schedul', name: 'Schedul', component: Schedul }
       ]
     },

@@ -10,7 +10,7 @@
       </tab>
     </div>
     <div class="schedul-list">
-      <div class="schedul-item" v-for="(item, index) in schedulList" :key="index">
+      <div class="schedul-item" v-for="(item, index) in schedulList" :key="index" @click="booking(item)">
         <p class="schedul-item-text">{{ item.duration }}</p>
       </div>
     </div>
@@ -32,18 +32,23 @@
     data () {
       return {
         dateList: [],
-        schedulList: ''
+        schedulList: '',
+        selectedIndex: 0
       }
     },
     methods: {
       getSchedul (activeIndex) {
-        console.log(activeIndex)
+        this.selectedIndex = activeIndex
         getScheList(this.dateList[activeIndex].fullDate)
           .then((res) => {
             if (res.data.resultCode === 200) {
               this.schedulList = res.data.schedulList
             }
           })
+      },
+      booking (item) {
+        let selectedDate = `${this.dateList[this.selectedIndex].fullDate}-${item.duration}`
+        this.$router.push({ name: 'Booking', params: { selectedDate: encodeURI(selectedDate) } })
       }
     },
     created () {
