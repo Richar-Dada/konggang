@@ -25,3 +25,8 @@ export function getScheList (activeDate) {
   let url = process.env.BASE_URL + '/api/v1/schedul/' + Base64.encode(activeDate)
   return Axios.get(url)
 }
+
+export function booking (data) {
+  let url = process.env.BASE_URL + '/api/v1/booking'
+  return Axios.post(url, data)
+}
