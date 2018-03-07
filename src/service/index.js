@@ -35,3 +35,8 @@ export function getBooking (username) {
   let url = process.env.BASE_URL + '/api/v1/booking/' + Base64.encode(username)
   return Axios.get(url)
 }
+
+export function remark (data) {
+  let url = process.env.BASE_URL + '/api/v1/remark'
+  return Axios.post(url, data)
+}

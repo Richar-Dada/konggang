@@ -34,8 +34,8 @@
       }
     },
     created () {
-      // let username = localStorage.getItem('username')
-      getBooking('家俊')
+      let username = localStorage.getItem('username')
+      getBooking(username)
         .then((res) => {
           this.orderList = res.data.orderList
         })

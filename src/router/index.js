@@ -6,6 +6,7 @@ import MyOrder from '@/views/MyOrder'
 import Individual from '@/views/Individual'
 import Booking from '@/views/Booking'
 import Schedul from '@/views/Schedul'
+import Remark from '@/views/Remark'
 
 // 登录注册
 import Login from '@/views/Login'
@@ -26,7 +27,8 @@ export default new Router({
         { path: 'myOrder', name: 'MyOrder', component: MyOrder },
         { path: 'individual', name: 'Individual', component: Individual },
         { path: 'booking/:selectedDate', name: 'Booking', component: Booking, props: true },
-        { path: 'schedul', name: 'Schedul', component: Schedul }
+        { path: 'schedul', name: 'Schedul', component: Schedul },
+        { path: 'remark', name: 'Remark', component: Remark }
       ]
     },
     { path: '/login', name: 'Login', component: Login },
