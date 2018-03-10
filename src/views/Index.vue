@@ -2,7 +2,9 @@
   <div>
     <div>
       <x-header :left-options="{showBack: false}" title="空港城"></x-header>
-      <router-view></router-view>
+      <transition>
+        <router-view></router-view>
+      </transition>
     </div>
     <tabbar class="tabbar">
       <tabbar-item selected link="/home">

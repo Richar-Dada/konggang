@@ -1,7 +1,9 @@
 <template>
   <div class="home">
     <swiper loop auto :list="demo06_list" :index="demo06_index" @on-index-change="demo06_onIndexChange" height="4rem"></swiper>
-    <div class="booking-btn" @click="booking">约</div>
+    <div class="booking-content" :style="{'height': bookingBtnHeight + 'rem'}">
+      <div class="booking-btn" @click="booking" >约</div>
+    </div>
   </div>
 </template>
 
@@ -42,7 +44,8 @@
     data () {
       return {
         demo06_list: urlList,
-        demo06_index: 0
+        demo06_index: 0,
+        bookingBtnHeight: '3rem'
       }
     },
     methods: {
@@ -56,21 +59,32 @@
           this.$router.push('/login')
         }
       }
+    },
+    created () {
+      let windowHeight = window.innerHeight
+      let rootFontSize = parseInt(window.getComputedStyle(document.documentElement)['fontSize'])
+      let rem = windowHeight / rootFontSize
+      this.bookingBtnHeight = rem - 92 / 75 - 4
     }
   }
 </script>
 
 <style scoped lang="less">
   @import "../assets/css/base.less";
+  .booking-content{
+    overflow: hidden;
+    background-image: url('../assets/bg.png');
+  }
   .booking-btn{
     width: 200px;
     height: 200px;
     border-radius: 50%;
     background-color: @blue;
     color: #ffffff;
-    margin: 100px auto;
+    margin: 50px auto;
     font-size: 100px;
     line-height: 200px;
     text-align: center;
+    box-shadow: 0px 0px 15px #000000;
   }
 </style>
