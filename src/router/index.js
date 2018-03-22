@@ -45,7 +45,7 @@ export default new Router({
     { path: '/login', name: 'Login', component: Login },
     { path: '/registe', name: 'Registe', component: Registe },
     { path: '/certificateconfirm', name: 'CertificateConfirm', component: CertificateConfirm },
-    { path: '/resetpassword', name: 'ResetPassword', component: ResetPassword },
+    { path: '/resetpassword/:phone', name: 'ResetPassword', component: ResetPassword, props: true },
     { path: '*', redirect: '/' }
   ]
 })

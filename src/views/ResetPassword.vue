@@ -26,6 +26,12 @@
       Group,
       Toast
     },
+    props: {
+      phone: {
+        type: String,
+        default: ''
+      }
+    },
     data () {
       return {
         password: '',
@@ -59,7 +65,7 @@
       resetPassword () {
         if (this._isAllValid()) {
           const resetPasswordReg = {
-            certificate: sessionStorage.getItem('confirmId'),
+            phone: this.phone,
             password: this.password
           }
           resetPassword(resetPasswordReg)
@@ -67,7 +73,6 @@
               this.showToast = true
               if (res.data.resultCode === 200) {
                 this.toastMsg = res.data.successMsg
-                sessionStorage.removeItem('confirmId')
                 setTimeout(() => {
                   this.$router.push('/login')
                 }, 1500)
@@ -79,9 +84,6 @@
       }
     },
     created () {
-      if (!sessionStorage.getItem('confirmId')) {
-        this.$router.push('/')
-      }
     }
   }
 </script>

@@ -2,7 +2,10 @@
   <div class="login">
     <x-header title="修改密码"></x-header>
     <group class="input-list">
-      <x-input title="身份证" ref="document" label-width="2.5rem" v-model="document" :is-type="beID" placeholder="请输入身份证"></x-input>
+      <x-input title="手机号码" ref="phone" label-width="2.5rem" v-model="phone" :is-type="bePhone" :max="11" placeholder="请输入11位手机号码"></x-input>
+      <x-input title="验证码" ref="code" label-width="2.5rem" class="weui-vcode" required :min="6" :max="6" v-model="code">
+        <x-button slot="right" type="primary" mini :disabled="!canSendCode" @click.native="sendCode">{{sendCodeBtnText}}</x-button>
+      </x-input>
     </group>
     <div class="function-box">
       <x-button class="submit-btn" type="primary" action-type="button" @click.native="submitCertificate">确 认</x-button>
@@ -13,8 +16,8 @@
 
 <script>
   import { XHeader, XButton, XInput, Group, Toast } from 'vux'
-  import { checkUserID } from '@/utils/validateTool'
-  import { confirmCertificate } from '@/service'
+  import { checkPhone } from '@/utils/validateTool'
+  import { confirmCertificate, sendCode } from '@/service'
 
   export default {
     name: 'login',
@@ -27,41 +30,74 @@
     },
     data () {
       return {
-        document: '',
+        phone: '',
+        code: '',
         showToast: false,
-        toastMsg: ''
+        toastMsg: '',
+        canSendCode: true,
+        sendCodeBtnText: '发送验证码',
+        sendCodeCounter: null
       }
     },
     methods: {
-      beID: function (value) {
-        const result = checkUserID(value)
+      sendCode (event) {
+        if (!this.phone || !this.$refs.phone.valid) {
+          this.toastMsg = '手机号码不正确'
+          this.showToast = true
+          return
+        }
+
+        let that = this
+        this.canSendCode = false
+        let counter = 59
+        that.sendCodeBtnText = counter + 's'
+        this.sendCodeCounter = setInterval(function () {
+          if (counter <= 0) {
+            that.canSendCode = true
+            that.sendCodeBtnText = '发送验证码'
+            clearInterval(that.sendCodeCounter)
+          } else {
+            counter -= 1
+            that.sendCodeBtnText = counter + 's'
+            console.log(that.sendCodeBtnText)
+          }
+        }, 1000)
+        sendCode({ phone: this.phone })
+          .then((res) => {
+            if (res.resultCode !== 200) {
+              this.toastMsg = res.errorMsg
+              this.showToast = true
+            }
+          })
+      },
+      bePhone (value) {
+        const result = checkPhone(value)
         return {
           valid: result.valid,
           msg: result.msg
         }
       },
       _isAllValid () {
-        if (this.document) {
-          if (this.$refs.document.valid) {
+        if (this.phone && this.code) {
+          if (this.$refs.phone.valid && this.$refs.code.valid) {
             return true
           }
           this.showToast = true
-          this.toastMsg = '请正确填写身份证号码'
+          this.toastMsg = '请正确填写信息'
           return false
         } else {
           this.showToast = true
-          this.toastMsg = '请填写身份证号码'
+          this.toastMsg = '请填写信息'
           return false
         }
       },
       submitCertificate () {
         if (this._isAllValid()) {
-          const confirmCertificateReq = { certificate: this.document }
+          const confirmCertificateReq = { phone: this.phone, code: this.code }
           confirmCertificate(confirmCertificateReq)
             .then((res) => {
               if (res.data.resultCode === 200) {
-                this.$router.push('/resetPassword')
-                sessionStorage.setItem('confirmId', this.document)
+                this.$router.push('/resetPassword/' + this.phone)
               } else {
                 this.showToast = true
                 this.toastMsg = res.data.errorMsg
