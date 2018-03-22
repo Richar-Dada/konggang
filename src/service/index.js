@@ -21,6 +21,11 @@ export function resetPassword (data) {
   return Axios.post(url, data)
 }
 
+export function sendCode (data) {
+  let url = process.env.BASE_URL + '/sendCode'
+  return Axios.post(url, data)
+}
+
 export function getScheList (activeDate) {
   let url = process.env.BASE_URL + '/api/v1/schedul/' + Base64.encode(activeDate)
   return Axios.get(url)
