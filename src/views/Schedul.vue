@@ -13,6 +13,9 @@
       <div class="schedul-item" v-for="(item, index) in schedulList" :key="index" @click="booking(item)">
         <p class="schedul-item-text">{{ item.duration }}</p>
       </div>
+      <div class="no-result" v-if="noResult">
+        <p class="no-result-text">每天{{ deadline }}后截止预约服务</p>
+      </div>
     </div>
   </div>
 </template>
@@ -33,7 +36,9 @@
       return {
         dateList: [],
         schedulList: '',
-        selectedIndex: 0
+        selectedIndex: 0,
+        noResult: false,
+        deadline: ''
       }
     },
     methods: {
@@ -43,6 +48,11 @@
           .then((res) => {
             if (res.data.resultCode === 200) {
               this.schedulList = res.data.schedulList
+              this.noResult = false
+              if (!this.schedulList.length) {
+                this.noResult = true
+                this.deadline = res.data.deadline
+              }
             }
           })
       },
@@ -61,6 +71,9 @@
 <style lang="less" scoped>
   @import '../assets/css/base.less';
 
+  .schedul{
+    padding-bottom: 60px;
+  }
   .schedul-item{
     height: 100px;
     margin: 10px 10px 0 10px;
@@ -71,5 +84,14 @@
     text-align: center;
     font-size: 30px;
     color: #ffffff;
+  }
+  .no-result{
+    height: 100px;
+    margin: 10px 10px 0 10px;
+  }
+  .no-result-text{
+    line-height: 100px;
+    text-align: center;
+    font-size: 24px;
   }
 </style>

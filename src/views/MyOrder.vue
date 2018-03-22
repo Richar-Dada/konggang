@@ -14,6 +14,11 @@
           <td>{{ order.carId }}</td>
           <td>{{ order.bookingDate + ' ' + order.bookingTime }}</td>
         </tr>
+        <tr v-if="noResult">
+          <td></td>
+          <td>没有记录</td>
+          <td></td>
+        </tr>
       </tbody>
     </x-table>
   </div>
@@ -38,7 +43,16 @@
       getBooking(username)
         .then((res) => {
           this.orderList = res.data.orderList
+          if (!this.orderList.length) {
+            this.noResult = true
+          }
         })
     }
   }
 </script>
+
+<style scoped>
+.my-order{
+  padding-bottom: 60px;
+}
+</style>
