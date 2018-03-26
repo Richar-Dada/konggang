@@ -76,7 +76,10 @@
         }, 1000)
         sendCode({ phone: this.phone })
           .then((res) => {
-            console.log(res)
+            if (res.data.resultCode !== 200) {
+              this.toastMsg = res.data.errorMsg
+              this.showToast = true
+            }
           })
       },
       beUsername (value) {
@@ -129,8 +132,8 @@
             phone: this.phone,
             certificate: this.document,
             code: this.code,
-            companyName: this.companyName,
-            companyAddress: this.companyAddress
+            companyName: this.companyName || ' ',
+            companyAddress: this.companyAddress || ' '
           }
           registe(registeReq)
             .then((res) => {
