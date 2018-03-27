@@ -10,8 +10,10 @@ import Home from '@/views/Home'
 /* eslint-disable */
 const MyOrder = () => import('@/views/MyOrder')
 const Individual = () => import('@/views/Individual')
-const Booking = () => import('@/views/Booking')
-const Schedul = () => import('@/views/Schedul')
+const BookingGuohu = () => import('@/views/BookingGuohu')
+const BookingQianchu = () => import('@/views/BookingQianchu')
+const SchedulGuohu = () => import('@/views/SchedulGuohu')
+const SchedulQianchu = () => import('@/views/SchedulQianchu')
 const Remark = () => import('@/views/Remark')
 
 // 登录注册
@@ -37,8 +39,10 @@ export default new Router({
         { path: '', name: 'Home', component: Home },
         { path: 'myOrder', name: 'MyOrder', component: MyOrder },
         { path: 'individual', name: 'Individual', component: Individual },
-        { path: 'booking/:selectedDate', name: 'Booking', component: Booking, props: true },
-        { path: 'schedul', name: 'Schedul', component: Schedul },
+        { path: 'bookingGuohu/:selectedDate', name: 'BookingGuohu', component: BookingGuohu, props: true },
+        { path: 'bookingQianchu/:selectedDate', name: 'BookingQianchu', component: BookingQianchu, props: true },
+        { path: 'schedulguohua', name: 'Schedul', component: SchedulGuohu },
+        { path: 'schedulqianchu', name: 'Schedul', component: SchedulQianchu },
         { path: 'remark', name: 'Remark', component: Remark }
       ]
     },

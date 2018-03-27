@@ -1,12 +1,14 @@
 <template>
   <div class="schedul">
     <div style="width: 100%;overflow:scroll;-webkit-overflow-scrolling:touch;">
-      <tab style="width:10rem;" bar-active-color="#668599" :line-width="1">
+      <tab style="width:15rem;" bar-active-color="#668599" :line-width="1">
         <tab-item selected @on-item-click="getSchedul">{{ dateList[0].date }}</tab-item>
         <tab-item @on-item-click="getSchedul">{{ dateList[1].date }}</tab-item>
         <tab-item @on-item-click="getSchedul">{{ dateList[2].date }}</tab-item>
         <tab-item @on-item-click="getSchedul">{{ dateList[3].date }}</tab-item>
         <tab-item @on-item-click="getSchedul">{{ dateList[4].date }}</tab-item>
+        <tab-item @on-item-click="getSchedul">{{ dateList[5].date }}</tab-item>
+        <tab-item @on-item-click="getSchedul">{{ dateList[6].date }}</tab-item>
       </tab>
     </div>
     <div class="schedul-list">
@@ -58,7 +60,7 @@
       },
       booking (item) {
         let selectedDate = `${this.dateList[this.selectedIndex].fullDate}-${item.duration}`
-        this.$router.push({ name: 'Booking', params: { selectedDate: encodeURI(selectedDate) } })
+        this.$router.push({ name: 'BookingGuohu', params: { selectedDate: encodeURI(selectedDate) } })
       }
     },
     created () {

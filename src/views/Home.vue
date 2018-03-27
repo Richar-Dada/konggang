@@ -56,9 +56,9 @@
       booking (key) {
         if (localStorage.getItem('token')) {
           if (key === 'guohu') {
-            this.$router.push('/schedul')
+            this.$router.push('/schedulguohua')
           } else {
-            this.$router.push('/schedul')
+            this.$router.push('/schedulqianchu')
           }
         } else {
           this.$router.push('/login')
