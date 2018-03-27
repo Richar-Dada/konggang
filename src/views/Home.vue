@@ -2,7 +2,8 @@
   <div class="home">
     <swiper loop auto :list="demo06_list" :index="demo06_index" @on-index-change="demo06_onIndexChange" height="4rem"></swiper>
     <div class="booking-content" :style="{'height': bookingBtnHeight + 'rem'}">
-      <div class="booking-btn" @click="booking" >约</div>
+      <div class="booking-btn" @click="booking('guohu')" >市内过户</div>
+      <div class="booking-btn" @click="booking('qianchu')" >迁出档案</div>
     </div>
   </div>
 </template>
@@ -52,9 +53,13 @@
       demo06_onIndexChange (index) {
         this.demo06_index = index
       },
-      booking () {
+      booking (key) {
         if (localStorage.getItem('token')) {
-          this.$router.push('/schedul')
+          if (key === 'guohu') {
+            this.$router.push('/schedul')
+          } else {
+            this.$router.push('/schedul')
+          }
         } else {
           this.$router.push('/login')
         }
@@ -76,15 +81,15 @@
     background-image: url('../assets/bg.png');
   }
   .booking-btn{
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
+    width: 300px;
+    height: 60px;
+    border-radius: 10px;
     background-color: @blue;
     color: #ffffff;
-    margin: 50px auto;
-    font-size: 100px;
-    line-height: 200px;
+    margin: 40px auto;
+    font-size: 30px;
+    line-height: 60px;
     text-align: center;
-    box-shadow: 0px 0px 15px #000000;
+    box-shadow: 0px 0px 10px #000000;
   }
 </style>
