@@ -1,19 +1,8 @@
 <template>
   <div class="booking">
     <group class="input-list">
-      <div class="box">
-        <div class="left-label">
-          办理业务
-        </div>
-        <checker v-model="serviceType" radio-required default-item-class="demo1-item" selected-item-class="demo1-item-selected">
-        <checker-item value="过户" style="margin-right:0.5rem;">过户</checker-item>
-        <checker-item value="迁出">迁出</checker-item>
-        </checker>
-      </div>
-      <x-input title="名字" ref="username" label-width="2.5rem" required v-model="username" placeholder="必填,请输入名字"></x-input>
-      <x-input title="手机号码" ref="phone" label-width="2.5rem" required v-model="phone" keyboard="number" :is-type="bePhone" :max="11" placeholder="必填,请输入手机号码"></x-input>
+      <x-input title="品牌型号" ref="carname" label-width="2.5rem" required v-model="carname" placeholder="必填,请输入品牌型号"></x-input>
       <x-input title="车牌" ref="carId" label-width="2.5rem" required v-model="carId"  placeholder="必填,这输入车牌号"></x-input>
-      <x-textarea :max="200" v-model="remark" placeholder="有什么需要特殊说明吗" show-counter></x-textarea>
     </group>
     <div class="function-box">
       <x-button class="submit-btn" type="primary" @click.native="booking">提 交</x-button>
@@ -46,8 +35,8 @@
     },
     data () {
       return {
-        serviceType: '过户',
-        username: '',
+        serviceType: '市内过户',
+        carname: '',
         phone: '',
         carId: '',
         remark: '',
@@ -72,9 +61,7 @@
             bookingDate: this.bookingDate,
             bookingTime: this.bookingTime,
             carId: this.carId,
-            bookingName: this.username,
-            bookingPhone: this.phone,
-            remark: this.remark,
+            carName: this.carname,
             createTime: new Date().getTime(),
             createBy: localStorage.getItem('username')
           }

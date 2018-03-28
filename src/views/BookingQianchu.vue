@@ -1,19 +1,14 @@
 <template>
   <div class="booking">
     <group class="input-list">
-      <div class="box">
-        <div class="left-label">
-          办理业务
-        </div>
-        <checker v-model="serviceType" radio-required default-item-class="demo1-item" selected-item-class="demo1-item-selected">
-        <checker-item value="过户" style="margin-right:0.5rem;">过户</checker-item>
-        <checker-item value="迁出">迁出</checker-item>
-        </checker>
-      </div>
-      <x-input title="名字" ref="username" label-width="2.5rem" required v-model="username" placeholder="必填,请输入名字"></x-input>
-      <x-input title="手机号码" ref="phone" label-width="2.5rem" required v-model="phone" keyboard="number" :is-type="bePhone" :max="11" placeholder="必填,请输入手机号码"></x-input>
-      <x-input title="车牌" ref="carId" label-width="2.5rem" required v-model="carId"  placeholder="必填,这输入车牌号"></x-input>
-      <x-textarea :max="200" v-model="remark" placeholder="有什么需要特殊说明吗" show-counter></x-textarea>
+      <x-input title="品牌型号" ref="carname" label-width="2.5rem" required v-model="carname" placeholder="必填,品牌型号"></x-input>
+      <x-input title="车牌号" ref="carId" label-width="2.5rem" required v-model="carId"  placeholder="必填,这输入车牌号"></x-input>
+      <x-input title="发动机号" ref="engineNumber" label-width="2.5rem" required v-model="engineNumber" keyboard="number" :min="4" :max="4" placeholder="必填,发动机号码后四位"></x-input>
+      <x-input title="原车主姓名" ref="oldCarOwner" label-width="2.5rem" required v-model="oldCarOwner"  placeholder="必填"></x-input>
+      <x-input title="新车主姓名" ref="newCarOwner" label-width="2.5rem" required v-model="newCarOwner"  placeholder="必填"></x-input>
+      <x-address title="迁入地" v-model="immigrationAddress" raw-value :list="addressData"></x-address>
+      <x-input title="新车主身份证明" ref="carId" label-width="2.5rem" required v-model="carId"  placeholder="必填,这输入车牌号"></x-input>
+      <x-input title="新车主证件号码" ref="carId" label-width="2.5rem" required v-model="carId"  placeholder="必填,这输入车牌号"></x-input>
     </group>
     <div class="function-box">
       <x-button class="submit-btn" type="primary" @click.native="booking">提 交</x-button>
@@ -23,7 +18,7 @@
 </template>
 
 <script>
-  import { Group, XInput, Checker, CheckerItem, XTextarea, XButton, Toast } from 'vux'
+  import { Group, XInput, Checker, CheckerItem, XTextarea, XButton, Toast, ChinaAddressV4Data, XAddress } from 'vux'
   import { checkPhone } from '@/utils/validateTool'
   import { booking } from '@/service'
 
@@ -37,6 +32,7 @@
       XTextarea,
       XButton,
       Toast
+      // XAddress
     },
     props: {
       selectedDate: {
@@ -48,12 +44,16 @@
       return {
         serviceType: '过户',
         username: '',
-        phone: '',
-        carId: '',
+        engineNumber: '',
+        carId: '粤A',
         remark: '',
         toastMsg: '',
         bookingDate: '',
         bookingTime: '',
+        oldCarOwner: '',
+        newCarOwner: '',
+        immigrationAddress: '',
+        addressData: ChinaAddressV4Data,
         showToast: false
       }
     },
@@ -109,6 +109,7 @@
       }
     },
     created () {
+      console.log(ChinaAddressV4Data)
       if (!this.selectedDate) {
         this.$router.push('/')
       }
