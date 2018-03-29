@@ -5,8 +5,10 @@ import FastClick from 'fastclick'
 import VueRouter from 'vue-router'
 import App from './App'
 import router from './router'
+import VueAreaLinkage from 'vue-area-linkage'
 
 Vue.use(VueRouter)
+Vue.use(VueAreaLinkage)
 
 FastClick.attach(document.body)
 
