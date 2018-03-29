@@ -78,12 +78,7 @@ let webpackConfig = {
   }
 }
 
-//配置颜色
-let lessTheme = {
-  name:'less-theme',
-  path:'src/style/theme.less'
-}
 
 module.exports = vuxLoader.merge(webpackConfig, {
-  plugins: ['vux-ui', lessTheme, 'progress-bar', 'duplicate-style']
+  plugins: ['vux-ui', 'progress-bar', 'duplicate-style']
 })
