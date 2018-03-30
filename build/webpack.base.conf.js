@@ -5,7 +5,7 @@ const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
 const vuxLoader = require('vux-loader')
 
-function resolve (dir) {
+function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
@@ -30,7 +30,7 @@ let webpackConfig = {
   },
   module: {
     rules: [
-      ...(config.dev.useEslint? [{
+      ...(config.dev.useEslint ? [{
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
         enforce: 'pre',
@@ -80,8 +80,8 @@ let webpackConfig = {
 
 //配置颜色
 let lessTheme = {
-  name:'less-theme',
-  path:'src/style/theme.less'
+  name: 'less-theme',
+  path: 'src/style/theme.less'
 }
 
 module.exports = vuxLoader.merge(webpackConfig, {

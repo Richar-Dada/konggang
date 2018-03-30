@@ -10,23 +10,24 @@ const sourceMapEnabled = isProduction
 module.exports = {
   loaders: utils.cssLoaders({
     sourceMap: sourceMapEnabled,
-    extract: isProduction
+    extract: isProduction,
+    usePostCSS: true
   }),
   cssSourceMap: sourceMapEnabled,
-  cacheBusting: config.dev.cacheBusting, 
+  cacheBusting: config.dev.cacheBusting,
   transformToRequire: {
     video: 'src',
     source: 'src',
     img: 'src',
     image: 'xlink:href'
   },
-  postcss: function() {
+  postcss: function () {
     return [
       require('./mycss')(),
       require('autoprefixer')({
         browsers: ['iOS >= 7', 'Android >= 4.1']
       }),
-      require('postcss-px2rem')({remUnit: 37.5})
+      require('postcss-px2rem')({ remUnit: 37.5 })
     ]
   }
 }
