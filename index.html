@@ -2,8 +2,16 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <title>test</title>
+    <!--<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">-->
+    <title>空港城</title>
+    <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+    <script>
+      document.documentElement.addEventListener('touchmove', function (event) {
+        if (event.touches.length > 1) {
+          event.preventDefault();
+        }
+      }, false);
+    </script>
   </head>
   <body>
     <div id="app-box"></div>
