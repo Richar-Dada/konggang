@@ -52,6 +52,7 @@
         })
         getScheList(this.dateList[activeIndex].fullDate)
           .then((res) => {
+            this.$vux.loading.hide()
             if (res.data.resultCode === 200) {
               this.schedulList = res.data.schedulList
               this.noResult = false

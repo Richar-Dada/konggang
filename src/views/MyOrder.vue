@@ -41,8 +41,12 @@
     },
     created () {
       let username = localStorage.getItem('username')
+      this.$vux.loading.show({
+        text: 'Loading'
+      })
       getBooking(username)
         .then((res) => {
+          this.$vux.loading.hide()
           this.orderList = res.data.orderList
           if (!this.orderList.length) {
             this.noResult = true

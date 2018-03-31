@@ -2,14 +2,17 @@
   <div class="booking">
     <x-header title="迁出提档"></x-header>
     <group class="input-list">
+      <x-input title="联系人姓名" ref="contactName" label-width="2.5rem" required v-model="contactName"  placeholder="必填,请输入姓名"></x-input>
+      <x-input title="联系电话" ref="contactPhone" label-width="2.5rem" required v-model="contactPhone" :is-type="bePhone"  placeholder="必填,请输入电话号码"></x-input>
       <x-input title="品牌型号" ref="carname" label-width="2.5rem" required v-model="carname" placeholder="必填,如:本田飞度"></x-input>
       <x-input title="车牌号" ref="carId" label-width="2.5rem" required v-model="carId" :is-type="beCarId" placeholder="必填,这输入车牌号"></x-input>
+      <x-input title="车架号" ref="carNumber" label-width="2.5rem" required v-model="carNumber" :min="17" :max="17"  placeholder="必填,请输入17位车架号"></x-input>
       <x-input title="发动机号" ref="engineNumber" label-width="2.5rem" required v-model="engineNumber" :min="4" :max="4" placeholder="必填,发动机号码后四位"></x-input>
       <x-input title="原车主姓名" ref="oldCarOwner" label-width="2.5rem" required v-model="oldCarOwner" placeholder="必填"></x-input>
       <x-input title="新车主姓名" ref="newCarOwner" label-width="2.5rem" required v-model="newCarOwner" placeholder="必填"></x-input>
-      <x-address class="x-address" title="迁入地" v-model="immigrationAddress" raw-value :list="addressData"></x-address>
+      <x-address class="x-address" title="迁入地" v-model="immigrationAddress" raw-value :list="addressData" hide-district></x-address>
       <selector ref="newCarDocumentType" title="新车主证件" placeholder="请选择一个" :options="documentType" v-model="newCarDocumentType"></selector>
-      <x-input title="新车主证件号码" ref="newCarDocumentNumber" label-width="3.5rem" keyboard="number" :is-type="beUserID" v-model="newCarDocumentNumber" placeholder="必填"></x-input>
+      <x-input title="新车主证件号码" ref="newCarDocumentNumber" label-width="3.5rem" keyboard="number" :min="18" :max="18" :is-type="beUserID" v-model="newCarDocumentNumber" placeholder="必填"></x-input>
     </group>
     <div class="function-box">
       <x-button class="submit-btn" type="primary" @click.native="booking">提 交</x-button>
@@ -20,7 +23,7 @@
 
 <script>
 import { Group, XInput, XHeader, Checker, CheckerItem, XTextarea, XButton, Toast, ChinaAddressV4Data, Value2nameFilter as value2name, XAddress, Selector } from 'vux'
-import { checkCarId, checkUserID } from '@/utils/validateTool'
+import { checkCarId, checkUserID, checkPhone } from '@/utils/validateTool'
 import { booking } from '@/service'
 
 export default {
@@ -55,7 +58,7 @@ export default {
       bookingTime: '',
       oldCarOwner: '',
       newCarOwner: '',
-      immigrationAddress: ['广东省', '广州市'],
+      immigrationAddress: ['广东省', '清远市'],
       documentType: [
         { key: '身份证', value: '身份证' },
         { key: '居住证', value: '居住证' },
@@ -63,12 +66,22 @@ export default {
       addressData: ChinaAddressV4Data,
       showToast: false,
       newCarDocumentType: '',
-      newCarDocumentNumber: ''
+      newCarDocumentNumber: '',
+      contactName: '',
+      contactPhone: '',
+      carNumber: ''
     }
   },
   methods: {
     beUserID(value) {
       const result = checkUserID(value)
+      return {
+        valid: result.valid,
+        msg: result.msg
+      }
+    },
+    bePhone (value) {
+      const result = checkPhone(value)
       return {
         valid: result.valid,
         msg: result.msg
@@ -90,6 +103,9 @@ export default {
           serviceType: this.serviceType,
           bookingDate: this.bookingDate,
           bookingTime: this.bookingTime,
+          contactName: this.contactName,
+          contactPhone: this.contactPhone,
+          carNumber: this.carNumber,
           carname: this.carname,
           carId: this.carId,
           engineNumber: this.engineNumber,

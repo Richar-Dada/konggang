@@ -2,8 +2,11 @@
   <div class="booking">
     <x-header title="市内过户"></x-header>
     <group class="input-list">
-      <x-input title="品牌型号" ref="carname" label-width="2.5rem" required v-model="carname" placeholder="必填,请输入品牌型号"></x-input>
+      <x-input title="联系人姓名" ref="contactName" label-width="2.5rem" required v-model="contactName"  placeholder="必填,请输入姓名"></x-input>
+      <x-input title="联系电话" ref="contactPhone" label-width="2.5rem" required v-model="contactPhone" :is-type="bePhone"  placeholder="必填,请输入电话号码"></x-input>
+      <x-input title="品牌型号" ref="carname" label-width="2.5rem" required v-model="carname" placeholder="必填,如本田飞度"></x-input>
       <x-input title="车牌号" ref="carId" label-width="2.5rem" required v-model="carId" :is-type="beCarId"  placeholder="必填,这输入车牌号"></x-input>
+      <x-input title="车架号" ref="carNumber" label-width="2.5rem" required v-model="carNumber" :min="17" :max="17"  placeholder="必填,请输入17位车架号"></x-input>
     </group>
     <div class="function-box">
       <x-button class="submit-btn" type="primary" @click.native="booking">提 交</x-button>
@@ -14,7 +17,7 @@
 
 <script>
   import { Group, XInput, XButton, Toast, XHeader } from 'vux'
-  import { checkCarId } from '@/utils/validateTool'
+  import { checkCarId, checkPhone } from '@/utils/validateTool'
   import { booking } from '@/service'
 
   export default {
@@ -40,12 +43,22 @@
         toastMsg: '',
         bookingDate: '',
         bookingTime: '',
-        showToast: false
+        showToast: false,
+        contactName: '',
+        contactPhone: '',
+        carNumber: ''
       }
     },
     methods: {
       beCarId (value) {
         const result = checkCarId(value)
+        return {
+          valid: result.valid,
+          msg: result.msg
+        }
+      },
+      bePhone (value) {
+        const result = checkPhone(value)
         return {
           valid: result.valid,
           msg: result.msg
@@ -57,6 +70,9 @@
             serviceType: this.serviceType,
             bookingDate: this.bookingDate,
             bookingTime: this.bookingTime,
+            contactName: this.contactName,
+            contactPhone: this.contactPhone,
+            carNumber: this.carNumber,
             carname: this.carname,
             carId: this.carId,
             createTime: new Date().getTime(),

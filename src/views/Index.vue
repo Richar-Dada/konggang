@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <x-header :left-options="{showBack: false}" title="空港城"></x-header>
+      <x-header :left-options="{showBack: false}" title="空港服务站"></x-header>
       <transition>
         <router-view></router-view>
       </transition>
