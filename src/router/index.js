@@ -33,16 +33,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Index',
       component: Index,
       children: [
         { path: '', name: 'Home', component: Home },
         { path: 'myOrder', name: 'MyOrder', component: MyOrder },
         { path: 'individual', name: 'Individual', component: Individual },
-        { path: 'bookingGuohu/:selectedDate', name: 'BookingGuohu', component: BookingGuohu, props: true },
-        { path: 'bookingQianchu/:selectedDate', name: 'BookingQianchu', component: BookingQianchu, props: true },
-        { path: 'schedulguohua', name: 'Schedul', component: SchedulGuohu },
-        { path: 'schedulqianchu', name: 'Schedul', component: SchedulQianchu },
+        { path: 'schedulguohua', name: 'Schedulguohu', component: SchedulGuohu },
+        { path: 'schedulqianchu', name: 'Schedulqianchu', component: SchedulQianchu },
         { path: 'remark', name: 'Remark', component: Remark }
       ]
     },
@@ -50,6 +47,8 @@ export default new Router({
     { path: '/registe', name: 'Registe', component: Registe },
     { path: '/certificateconfirm', name: 'CertificateConfirm', component: CertificateConfirm },
     { path: '/resetpassword/:phone', name: 'ResetPassword', component: ResetPassword, props: true },
+    { path: 'bookingGuohu/:selectedDate', name: 'BookingGuohu', component: BookingGuohu, props: true },
+    { path: 'bookingQianchu/:selectedDate', name: 'BookingQianchu', component: BookingQianchu, props: true },
     { path: '*', redirect: '/' }
   ]
 })

@@ -1,5 +1,6 @@
 <template>
   <div class="booking">
+    <x-header title="市内过户"></x-header>
     <group class="input-list">
       <x-input title="品牌型号" ref="carname" label-width="2.5rem" required v-model="carname" placeholder="必填,请输入品牌型号"></x-input>
       <x-input title="车牌号" ref="carId" label-width="2.5rem" required v-model="carId" :is-type="beCarId"  placeholder="必填,这输入车牌号"></x-input>
@@ -12,7 +13,7 @@
 </template>
 
 <script>
-  import { Group, XInput, XButton, Toast } from 'vux'
+  import { Group, XInput, XButton, Toast, XHeader } from 'vux'
   import { checkCarId } from '@/utils/validateTool'
   import { booking } from '@/service'
 
@@ -22,7 +23,8 @@
       Group,
       XInput,
       XButton,
-      Toast
+      Toast,
+      XHeader
     },
     props: {
       selectedDate: {

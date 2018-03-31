@@ -45,3 +45,8 @@ export function remark (data) {
   let url = process.env.BASE_URL + '/api/v1/remark'
   return Axios.post(url, data)
 }
+
+export function isHoliday (date) {
+  let url = `http://api.goseek.cn/Tools/holiday?date=${date}`
+  return Axios.get(url)
+}

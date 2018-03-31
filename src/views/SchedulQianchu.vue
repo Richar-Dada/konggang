@@ -45,7 +45,11 @@
     },
     methods: {
       getSchedul (activeIndex) {
+        this.schedulList = []
         this.selectedIndex = activeIndex
+        this.$vux.loading.show({
+          text: 'Loading'
+        })
         getScheList(this.dateList[activeIndex].fullDate)
           .then((res) => {
             if (res.data.resultCode === 200) {
@@ -65,7 +69,6 @@
     },
     created () {
       this.dateList = getSchedulDate()
-      console.log(this.dateList)
       this.getSchedul(0)
     }
   }

@@ -3,7 +3,7 @@
     <swiper loop auto :list="demo06_list" :index="demo06_index" @on-index-change="demo06_onIndexChange" height="4rem"></swiper>
     <div class="booking-content" :style="{'height': bookingBtnHeight + 'rem'}">
       <div class="booking-btn" @click="booking('guohu')" >市内过户</div>
-      <div class="booking-btn" @click="booking('qianchu')" >迁出档案</div>
+      <div class="booking-btn" @click="booking('qianchu')" >迁出提档</div>
     </div>
   </div>
 </template>

@@ -1,5 +1,6 @@
 <template>
   <div class="booking">
+    <x-header title="迁出提档"></x-header>
     <group class="input-list">
       <x-input title="品牌型号" ref="carname" label-width="2.5rem" required v-model="carname" placeholder="必填,如:本田飞度"></x-input>
       <x-input title="车牌号" ref="carId" label-width="2.5rem" required v-model="carId" :is-type="beCarId" placeholder="必填,这输入车牌号"></x-input>
@@ -18,7 +19,7 @@
 </template>
 
 <script>
-import { Group, XInput, Checker, CheckerItem, XTextarea, XButton, Toast, ChinaAddressV4Data, Value2nameFilter as value2name, XAddress, Selector } from 'vux'
+import { Group, XInput, XHeader, Checker, CheckerItem, XTextarea, XButton, Toast, ChinaAddressV4Data, Value2nameFilter as value2name, XAddress, Selector } from 'vux'
 import { checkCarId, checkUserID } from '@/utils/validateTool'
 import { booking } from '@/service'
 
@@ -27,6 +28,7 @@ export default {
   components: {
     Group,
     XInput,
+    XHeader,
     Checker,
     CheckerItem,
     XTextarea,
@@ -53,7 +55,7 @@ export default {
       bookingTime: '',
       oldCarOwner: '',
       newCarOwner: '',
-      immigrationAddress: ['广东省', '广州市', '花都区'],
+      immigrationAddress: ['广东省', '广州市'],
       documentType: [
         { key: '身份证', value: '身份证' },
         { key: '居住证', value: '居住证' },
