@@ -35,7 +35,8 @@
     },
     data () {
       return {
-        orderList: []
+        orderList: [],
+        noResult: false
       }
     },
     created () {

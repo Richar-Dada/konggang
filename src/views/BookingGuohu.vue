@@ -2,7 +2,7 @@
   <div class="booking">
     <group class="input-list">
       <x-input title="品牌型号" ref="carname" label-width="2.5rem" required v-model="carname" placeholder="必填,请输入品牌型号"></x-input>
-      <x-input title="车牌" ref="carId" label-width="2.5rem" required v-model="carId"  placeholder="必填,这输入车牌号"></x-input>
+      <x-input title="车牌号" ref="carId" label-width="2.5rem" required v-model="carId" :is-type="beCarId"  placeholder="必填,这输入车牌号"></x-input>
     </group>
     <div class="function-box">
       <x-button class="submit-btn" type="primary" @click.native="booking">提 交</x-button>
@@ -12,8 +12,8 @@
 </template>
 
 <script>
-  import { Group, XInput, Checker, CheckerItem, XTextarea, XButton, Toast } from 'vux'
-  import { checkPhone } from '@/utils/validateTool'
+  import { Group, XInput, XButton, Toast } from 'vux'
+  import { checkCarId } from '@/utils/validateTool'
   import { booking } from '@/service'
 
   export default {
@@ -21,9 +21,6 @@
     components: {
       Group,
       XInput,
-      Checker,
-      CheckerItem,
-      XTextarea,
       XButton,
       Toast
     },
@@ -37,9 +34,7 @@
       return {
         serviceType: '市内过户',
         carname: '',
-        phone: '',
-        carId: '',
-        remark: '',
+        carId: '粤A',
         toastMsg: '',
         bookingDate: '',
         bookingTime: '',
@@ -47,8 +42,8 @@
       }
     },
     methods: {
-      bePhone (value) {
-        const result = checkPhone(value)
+      beCarId (value) {
+        const result = checkCarId(value)
         return {
           valid: result.valid,
           msg: result.msg
@@ -60,8 +55,8 @@
             serviceType: this.serviceType,
             bookingDate: this.bookingDate,
             bookingTime: this.bookingTime,
+            carname: this.carname,
             carId: this.carId,
-            carName: this.carname,
             createTime: new Date().getTime(),
             createBy: localStorage.getItem('username')
           }
@@ -81,8 +76,8 @@
         }
       },
       _isAllValid () {
-        if (this.username && this.phone && this.carId) {
-          if (this.$refs.username.valid && this.$refs.phone.valid && this.$refs.carId.valid) {
+        if (this.carname && this.carId.length > 2) {
+          if (this.$refs.carname.valid && this.$refs.carId.valid) {
             return true
           }
           this.showToast = true

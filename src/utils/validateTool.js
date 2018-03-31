@@ -28,7 +28,7 @@ export function checkUsername (value) {
  */
 export function checkUserID (value) {
   /* eslint-disable */
-  const regStr = /\d{17}[\d|x]|\d{15}/
+  const regStr = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/
   if (regStr.test(value)) {
     return {
       valid: true,
@@ -86,3 +86,22 @@ export function checkPhone (value) {
   }
 }
 
+/**
+ * @author by Zicong
+ * @date 2018-03-31
+ * @description 校验车牌
+ * @param {string} 
+ */
+export function checkCarId (value) {
+  if (value.length > 2) {
+    return {
+      valid: true,
+      msg: ''
+    }
+  } else {
+    return {
+      valid: false,
+      msg: '请输入车牌号'
+    }
+  }
+}
