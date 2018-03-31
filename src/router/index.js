@@ -2,30 +2,32 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/views/Index'
 import Home from '@/views/Home'
-// import MyOrder from '@/views/MyOrder'
-// import Individual from '@/views/Individual'
-// import Booking from '@/views/Booking'
-// import Schedul from '@/views/Schedul'
-// import Remark from '@/views/Remark'
+import MyOrder from '@/views/MyOrder'
+import Individual from '@/views/Individual'
+import BookingGuohu from '@/views/BookingGuohu'
+import BookingQianchu from '@/views/BookingQianchu'
+import SchedulGuohu from '@/views/SchedulGuohu'
+import SchedulQianchu from '@/views/SchedulQianchu'
+import Remark from '@/views/Remark'
 /* eslint-disable */
-const MyOrder = () => import('@/views/MyOrder')
-const Individual = () => import('@/views/Individual')
-const BookingGuohu = () => import('@/views/BookingGuohu')
-const BookingQianchu = () => import('@/views/BookingQianchu')
-const SchedulGuohu = () => import('@/views/SchedulGuohu')
-const SchedulQianchu = () => import('@/views/SchedulQianchu')
-const Remark = () => import('@/views/Remark')
+// const MyOrder = () => import('@/views/MyOrder')
+// const Individual = () => import('@/views/Individual')
+// const BookingGuohu = () => import('@/views/BookingGuohu')
+// const BookingQianchu = () => import('@/views/BookingQianchu')
+// const SchedulGuohu = () => import('@/views/SchedulGuohu')
+// const SchedulQianchu = () => import('@/views/SchedulQianchu')
+// const Remark = () => import('@/views/Remark')
 
 // 登录注册
-// import Login from '@/views/Login'
-// import Registe from '@/views/Registe'
-// import CertificateConfirm from '@/views/CertificateConfirm'
-// import ResetPassword from '@/views/ResetPassword'
+import Login from '@/views/Login'
+import Registe from '@/views/Registe'
+import CertificateConfirm from '@/views/CertificateConfirm'
+import ResetPassword from '@/views/ResetPassword'
 /* eslint-disable */
-const Login = () => import('@/views/Login')
-const Registe = () => import('@/views/Registe')
-const CertificateConfirm = () => import('@/views/CertificateConfirm')
-const ResetPassword = () => import('@/views/ResetPassword')
+// const Login = () => import('@/views/Login')
+// const Registe = () => import('@/views/Registe')
+// const CertificateConfirm = () => import('@/views/CertificateConfirm')
+// const ResetPassword = () => import('@/views/ResetPassword')
 
 Vue.use(Router)
 
