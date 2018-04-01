@@ -76,7 +76,7 @@
             carname: this.carname,
             carId: this.carId,
             createTime: new Date().getTime(),
-            createBy: localStorage.getItem('username')
+            createBy: localStorage.getItem('phone')
           }
 
           booking(bookingReq)

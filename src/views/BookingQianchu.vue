@@ -115,7 +115,7 @@ export default {
           newCarDocumentType: this.newCarDocumentType,
           newCarDocumentNumber: this.newCarDocumentNumber,
           createTime: new Date().getTime(),
-          createBy: localStorage.getItem('username')
+          createBy: localStorage.getItem('phone')
         }
 
         booking(bookingReq)

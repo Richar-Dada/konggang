@@ -40,11 +40,11 @@
       }
     },
     created () {
-      let username = localStorage.getItem('username')
+      let phone = localStorage.getItem('phone')
       this.$vux.loading.show({
         text: 'Loading'
       })
-      getBooking(username)
+      getBooking(phone)
         .then((res) => {
           this.$vux.loading.hide()
           this.orderList = res.data.orderList
