@@ -2,7 +2,7 @@
   <div class="individual">
     <div class="user-inofo">
       <div class="user-info-item">
-        {{ username }}
+        {{ phone }}
       </div>
     </div>
     <grid :cols="3">
@@ -39,12 +39,12 @@
     data () {
       return {
         hasLogin: false,
-        username: '?'
+        phone: '?'
       }
     },
     methods: {
       changeAccount () {
-        localStorage.removeItem('username')
+        localStorage.removeItem('phone')
         localStorage.removeItem('token')
         this.$router.push('/login')
       },
@@ -52,7 +52,7 @@
         this.$router.push('/login')
       },
       logout () {
-        localStorage.removeItem('username')
+        localStorage.removeItem('phone')
         localStorage.removeItem('token')
         this.$router.push('/')
       },
@@ -67,8 +67,8 @@
     created () {
       if (localStorage.getItem('token')) {
         this.hasLogin = true
-        if (localStorage.getItem('username')) {
-          this.username = localStorage.getItem('username')
+        if (localStorage.getItem('phone')) {
+          this.phone = localStorage.getItem('phone')
         }
       }
     }
@@ -87,15 +87,15 @@
     overflow: hidden;
   }
   .user-info-item{
-    width: 120px;
-    height: 120px;
-    line-height: 120px;
+    width: 240px;
+    height: 60px;
+    line-height: 60px;
     text-align: center;
     background-color: @blue;
     border: 5px solid #ffffff;
     box-shadow: 0px 0px 2px #666;
-    border-radius: 50%;
-    margin: 40px auto;
+    border-radius: 10px;
+    margin: 50px auto;
     font-size: 28px;
   }
   .grid-center {

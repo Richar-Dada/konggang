@@ -2,7 +2,7 @@
   <div class="login">
     <x-header title="账号登录"></x-header>
     <group class="input-list">
-      <x-input title="用户名" type="text" v-model="username" required label-width="2.5rem" placeholder="请输入用户名"></x-input>
+      <x-input title="手机号" type="text" v-model="phone" required :is-type="bePhone" :max="11" label-width="2.5rem" placeholder="请输入手机号码"></x-input>
       <x-input title="密 码" type="password" v-model="password" required label-width="2.5rem" placeholder="请输入密码"></x-input>
     </group>
     <div class="function-box">
@@ -18,6 +18,7 @@
 
 <script>
   import { XHeader, XButton, XInput, Flexbox, FlexboxItem, Group, Toast } from 'vux'
+  import { checkPhone } from '@/utils/validateTool'
   import { login } from '@/service'
 
   export default {
@@ -33,13 +34,20 @@
     },
     data () {
       return {
-        username: '',
+        phone: '',
         password: '',
         loginError: false,
         loginErrorMsg: ''
       }
     },
     methods: {
+      bePhone (value) {
+        const result = checkPhone(value)
+        return {
+          valid: result.valid,
+          msg: result.msg
+        }
+      },
       goRegiste () {
         this.$router.push('/registe')
       },
@@ -47,9 +55,9 @@
         this.$router.push('/certificateconfirm')
       },
       login () {
-        if (this.username && this.password) {
+        if (this.phone && this.password) {
           let loginReq = {
-            username: this.username,
+            phone: this.phone,
             password: this.password
           }
           login(loginReq)
@@ -58,7 +66,8 @@
               if (res.data.resultCode === 200) {
                 this.loginErrorMsg = res.data.successMsg
                 localStorage.setItem('token', res.data.token)
-                localStorage.setItem('username', res.data.username)
+                localStorage.setItem('phone', res.data.phone)
+                localStorage.setItem('username', res.data.phone)
                 setTimeout(() => {
                   this.$router.push('/')
                 }, 1500)
