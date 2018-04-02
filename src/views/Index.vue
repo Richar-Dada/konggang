@@ -24,30 +24,42 @@
 </template>
 
 <script>
-  import { Tabbar, TabbarItem, XHeader } from 'vux'
+import { Tabbar, TabbarItem, XHeader } from 'vux'
 
-  export default {
-    name: 'home',
-    components: {
-      Tabbar,
-      TabbarItem,
-      XHeader
-    },
-    data () {
-      return {
-        a: 'home'
-      }
+export default {
+  name: 'home',
+  components: {
+    Tabbar,
+    TabbarItem,
+    XHeader
+  },
+  data() {
+    return {
+      a: 'home'
     }
   }
+}
 </script>
 
 <style scoped>
-.tabbar{
+.tabbar {
   position: fixed;
   background-color: #ffffff;
   box-shadow: 0px -1px 10px rgba(0, 0, 0, 0.3); /* no */
+  width: 375px;
+  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  /*-webkit-box-align: center;*/
+  -webkit-align-items: center;
+  /*-ms-flex-align: center;*/
+  align-items: center;
 }
-.icon{
+
+.icon {
   opacity: 0.7;
 }
 </style>
