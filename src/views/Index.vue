@@ -46,17 +46,12 @@ export default {
   position: fixed;
   background-color: #ffffff;
   box-shadow: 0px -1px 10px rgba(0, 0, 0, 0.3); /* no */
-  width: 375px;
-  display: flex;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  justify-content: space-between;
-  -webkit-justify-content: space-between;
-  /*-webkit-box-align: center;*/
-  -webkit-align-items: center;
-  /*-ms-flex-align: center;*/
-  align-items: center;
+  /* display: box;  OLD - Android 4.4- */
+  display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox; /* TWEENER - IE 10 */
+  display: -webkit-flex; /* NEW - Chrome */
+  /* display: flex;  NEW, Spec - Opera 12.1, Firefox 20+ */
 }
 
 .icon {
