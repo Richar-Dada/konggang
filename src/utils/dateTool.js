@@ -1,3 +1,4 @@
+import { getHoliday } from '../service'
 const moment = require('moment')
 moment.locale('zh-cn')
 
@@ -17,4 +18,14 @@ export function getSchedulDate () {
     dayCalc++
   }
   return result
+}
+
+export function holidayCache () {
+  let holidayData = localStorage.getItem('holidayData')
+  if (!holidayData) {
+    getHoliday(new Date().getFullYear())
+      .then((res) => {
+        console.log(res)
+      })
+  }
 }

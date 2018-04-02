@@ -50,3 +50,8 @@ export function isHoliday (date) {
   let url = `http://api.goseek.cn/Tools/holiday?date=${date}`
   return Axios.get(url)
 }
+
+export function getHoliday (year) {
+  let url = process.env.BASE_URL + '/getHoliday/' + year
+  return Axios.get(url)
+}
