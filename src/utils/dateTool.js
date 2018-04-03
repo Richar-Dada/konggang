@@ -11,7 +11,6 @@ const holiday = [
 ]
 
 export function getSchedulDateGuohu () {
-  console.log('getSchedulDateGuohu')
   let d = new Date()
   let year = d.getUTCFullYear()
   let m = d.getUTCMonth() + 1

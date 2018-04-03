@@ -1,6 +1,6 @@
 <template>
   <div class="schedul">
-    <div style="width: 100%;overflow:scroll;-webkit-overflow-scrolling:touch;">
+    <div style="overflow:scroll;-webkit-overflow-scrolling:touch;">
       <tab  bar-active-color="#668599" :line-width="1">
         <tab-item selected @on-item-click="getSchedul">{{ dateList[0].date }}</tab-item>
         <tab-item @on-item-click="getSchedul">{{ dateList[1].date }}</tab-item>
