@@ -1,7 +1,7 @@
 <template>
   <div class="schedul">
     <div style="overflow:scroll;-webkit-overflow-scrolling:touch;">
-      <tab style="width:15rem;" bar-active-color="#668599">
+      <tab bar-active-color="#668599" :line-width="1">
         <tab-item selected @on-item-click="getSchedul">{{ dateList[0].date }}</tab-item>
         <tab-item @on-item-click="getSchedul">{{ dateList[1].date }}</tab-item>
         <tab-item @on-item-click="getSchedul">{{ dateList[2].date }}</tab-item>
@@ -24,7 +24,7 @@
 
 <script>
   import { Tab, TabItem, Masker } from 'vux'
-  import { getSchedulDate } from '../utils/dateTool'
+  import { getSchedulDateQianchu } from '../utils/dateTool'
   import { getScheList } from '@/service'
 
   export default {
@@ -69,7 +69,7 @@
       }
     },
     created () {
-      this.dateList = getSchedulDate()
+      this.dateList = getSchedulDateQianchu()
       this.getSchedul(0)
     }
   }

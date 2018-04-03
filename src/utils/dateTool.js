@@ -1,4 +1,3 @@
-import { getHoliday } from '../service'
 const moment = require('moment')
 moment.locale('zh-cn')
 
@@ -33,22 +32,72 @@ export function getSchedulDate () {
 }
 
 export function getSchedulDateGuohu () {
+  console.log('getSchedulDateGuohu')
   let d = new Date()
-  let mon = new Date().getMonth() + 1
-  let date = new Date().getDate()
+  let year = d.getUTCFullYear()
+  let m = d.getUTCMonth() + 1
+  let date = d.getUTCDate()
   let i = 0
-  let dayCalc = 1
   let result = []
   while (i < 7) {
-    if () {
+    if (year % 4 === 0 && m === 2) {
+      date = (date + 1) % 28
+      m = m + Math.floor((date / 28))
+    } else if (year % 4 !== 0 && m === 2) {
+      date = (date + 1) % 29
+      m = m + Math.floor((date / 29))
+    } else if (m === 4 || m === 6 || m === 9 || m === 11) {
+      date = (date + 1) % 30
+      m = m + Math.floor((date / 30))
+    } else {
+      date = (date + 1) % 31
+      m = m + Math.floor((date / 31))
+    }
+
+    let dateStr = m + '月' + date + '日'
+    if (holiday.indexOf(dateStr) === -1) {
       var tem = {
-        date: moment().add(dayCalc, 'days').format('MMM Do'),
-        fullDate: moment().add(dayCalc, 'days').format('LL')
+        date: dateStr,
+        fullDate: year + '年' + dateStr
       }
       result.push(tem)
       i++
     }
-    date++
+  }
+  return result
+}
+
+export function getSchedulDateQianchu () {
+  let d = new Date()
+  let year = d.getUTCFullYear()
+  let m = d.getUTCMonth() + 1
+  let date = d.getUTCDate()
+  let i = 0
+  let result = []
+  while (i < 9) {
+    if (year % 4 === 0 && m === 2) {
+      date = (date + 1) % 28
+      m = m + Math.floor((date / 28))
+    } else if (year % 4 !== 0 && m === 2) {
+      date = (date + 1) % 29
+      m = m + Math.floor((date / 29))
+    } else if (m === 4 || m === 6 || m === 9 || m === 11) {
+      date = (date + 1) % 30
+      m = m + Math.floor((date / 30))
+    } else {
+      date = (date + 1) % 31
+      m = m + Math.floor((date / 31))
+    }
+
+    let dateStr = m + '月' + date + '日'
+    if (holiday.indexOf(dateStr) === -1) {
+      var tem = {
+        date: dateStr,
+        fullDate: year + '年' + dateStr
+      }
+      if (i > 1) result.push(tem)
+      i++
+    }
   }
   return result
 }
