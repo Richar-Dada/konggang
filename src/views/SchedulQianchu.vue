@@ -16,7 +16,7 @@
         <p class="schedul-item-text">{{ item.duration }}</p>
       </div>
       <div class="no-result" v-if="noResult">
-        <p class="no-result-text">每天{{ deadline }}后截止预约服务</p>
+        <p class="no-result-text">{{errorMsg}}</p>
       </div>
     </div>
   </div>
@@ -40,7 +40,8 @@
         schedulList: '',
         selectedIndex: 0,
         noResult: false,
-        deadline: ''
+        deadline: '',
+        errorMsg: ''
       }
     },
     methods: {
@@ -56,10 +57,9 @@
             if (res.data.resultCode === 200) {
               this.schedulList = res.data.schedulList
               this.noResult = false
-              if (!this.schedulList.length) {
-                this.noResult = true
-                this.deadline = res.data.deadline
-              }
+            } else {
+              this.noResult = true
+              this.errorMsg = res.data.errorMsg
             }
           })
       },

@@ -16,13 +16,43 @@
     </group>
     <div class="function-box">
       <x-button class="submit-btn" type="primary" @click.native="booking">提 交</x-button>
+      <x-button mini class="submit-btn" @click.native="openNotice">迁出提档预约须知</x-button>
     </div>
     <toast v-model="showToast" width="6rem" type="text">{{toastMsg}}</toast>
+    <div v-transfer-dom>
+      <popup v-model="showNotice" position="bottom">
+        <group>
+          <cell value-align="left">1.	空港登记服务只接受办理9座（含9座）以下使用性质为小型客车的国产或合资车辆，无法办理使用性质为中型客车、大型客车、货车和进口车等其他车辆。</cell>
+          <cell value-align="left">2.	车辆行驶证<span style="color:red">（年审需要30日的有效期）</span></cell>
+          <cell value-align="left">3.	车辆登记证<span style="color:red">（身份证明信息需和证件一致，需要升位或三证合一的请到分所办理）</span></cell>
+          <cell value-align="left">4.	原车主身份证原件<span style="color:red">（证件需要有5个工作日有效期）</span></cell>
+          <cell value-align="left">5.	原车主身份证复印件<span style="color:red">（复印件签名、日期、手机号码）</span></cell>
+          <cell value-align="left">6.	新车主身份证原件<span style="color:red">（证件需要有30日有效期）</span></cell>
+          <cell value-align="left">7.	新车主身份证复印件<span style="color:red">（复印件签名、日期、手机号码）</span></cell>
+          <cell value-align="left">8.	非迁入地户口需要居住证原件<span style="color:red">（证件信息清晰、完整且需要有30日有效期）</span></cell>
+          <cell value-align="left">9.	非迁入地户口需要居住证复印件<span style="color:red">（复印件签名、日期、手机号码）</span></cell>
+          <cell value-align="left">10.	若原车主或新车主是单位/公司，需要提供：
+                    ①	营业执照原件<span style="color:red">（证件需要有30日有效期）</span>
+                    ②	营业执照复印件<span style="color:red">（复印件需盖单位公章）</span>
+                    ③	委托书<span style="color:red">（需盖单位公章及委托时间在有效期内）</span>
+                    ④	被委托人身份证原件<span style="color:red">（证件需要有30个工作日有效期）</span>
+                    ⑤	被委托人身份证复印件<span style="color:red">（复印件签名、日期、手机号码）</span>
+          </cell>
+          <cell value-align="left">11.	业务办理声明（前台领用，填写区有模板）</cell>
+          <cell value-align="left">12.	机动车业务告知书（前台领用，填写区有模板）</cell>
+          <cell value-align="left">13.	若新车主需要保留指标书上的车牌号码，需要填写<span style="color:red">机动车注册登记使用原号牌号码申请表</span>（前台领用，填写区有模板）</cell>
+          <cell value-align="left">14.	<span style="color:red">2003年10月以前注册登记的车辆无法在站点办理迁出</span></cell>
+        </group>
+        <div style="padding: 15px;">
+          <x-button @click.native="showNotice = false" type="primary"> 关 闭 </x-button>
+        </div>
+      </popup>
+    </div>
   </div>
 </template>
 
 <script>
-import { Group, XInput, XHeader, Checker, CheckerItem, XTextarea, XButton, Toast, ChinaAddressV4Data, Value2nameFilter as value2name, XAddress, Selector } from 'vux'
+import { Group, Popup, Cell, XInput, XHeader, Checker, CheckerItem, XTextarea, XButton, Toast, ChinaAddressV4Data, Value2nameFilter as value2name, XAddress, Selector } from 'vux'
 import { checkCarId, checkUserID, checkPhone } from '@/utils/validateTool'
 import { booking } from '@/service'
 
@@ -38,7 +68,9 @@ export default {
     XButton,
     Toast,
     XAddress,
-    Selector
+    Selector,
+    Popup,
+    Cell
   },
   props: {
     selectedDate: {
@@ -69,7 +101,8 @@ export default {
       newCarDocumentNumber: '',
       contactName: '',
       contactPhone: '',
-      carNumber: ''
+      carNumber: '',
+      showNotice: false
     }
   },
   methods: {
@@ -86,6 +119,9 @@ export default {
         valid: result.valid,
         msg: result.msg
       }
+    },
+    openNotice () {
+      this.showNotice = true
     },
     beCarId(value) {
       const result = checkCarId(value)
@@ -178,6 +214,7 @@ export default {
   margin-left: 10px;
   margin-right: 10px;
   margin-top: 20px;
+  text-align: center;
 }
 
 .submit-btn {
