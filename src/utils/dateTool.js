@@ -1,6 +1,3 @@
-const moment = require('moment')
-moment.locale('zh-cn')
-
 const holiday = [
   '4月1日', '4月5日', '4月6日', '4月7日', '4月14日', '4月15日', '4月21日', '4月22日', '4月29日', '4月30日',
   '5月1日', '5月5日', '5月6日', '5月12日', '5月13日', '5月19日', '5月20日', '5月26日', '5月27日',
@@ -12,24 +9,6 @@ const holiday = [
   '11月3日', '11月4日', '11月10日', '11月11日', '11月17日', '11月18日', '11月24日', '11月25日',
   '12月1日', '12月2日', '12月8日', '12月9日', '12月15日', '12月16日', '12月22日', '12月23日', '12月29日', '12月30日'
 ]
-
-export function getSchedulDate () {
-  let i = 0
-  let dayCalc = 1
-  let result = []
-  while (i < 7) {
-    if (moment().add(dayCalc, 'days').format('dddd') !== '星期六' && moment().add(dayCalc, 'days').format('dddd') !== '星期日') {
-      var tem = {
-        date: moment().add(dayCalc, 'days').format('MMM Do'),
-        fullDate: moment().add(dayCalc, 'days').format('LL')
-      }
-      result.push(tem)
-      i++
-    }
-    dayCalc++
-  }
-  return result
-}
 
 export function getSchedulDateGuohu () {
   console.log('getSchedulDateGuohu')
