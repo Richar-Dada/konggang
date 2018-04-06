@@ -59,12 +59,11 @@
           } else {
             counter -= 1
             that.sendCodeBtnText = counter + 's'
-            console.log(that.sendCodeBtnText)
           }
         }, 1000)
         sendCode({ phone: this.phone })
           .then((res) => {
-            if (res.resultCode !== 200) {
+            if (res.data.resultCode !== 200) {
               this.toastMsg = res.errorMsg
               this.showToast = true
             }
