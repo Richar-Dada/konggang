@@ -105,7 +105,8 @@ export default {
       contactName: '',
       contactPhone: '',
       carNumber: '',
-      showNotice: false
+      showNotice: false,
+      isRead: false
     }
   },
   methods: {
@@ -125,6 +126,7 @@ export default {
     },
     openNotice () {
       this.showNotice = true
+      this.isRead = true
     },
     beCarId(value) {
       const result = checkCarId(value)
@@ -172,6 +174,12 @@ export default {
       }
     },
     _isAllValid() {
+      if (!this.isRead) {
+        this.showToast = true
+        this.toastMsg = '请阅读一遍预约须知'
+        return false
+      }
+
       if (this.oldCarOwner && this.newCarOwner && this.carname && this.carId.length > 2 && this.newCarDocumentNumber && this.contactName && this.contactPhone && this.engineNumber && this.carNumber) {
         if (this.$refs.oldCarOwner.valid && this.$refs.newCarOwner.valid && this.$refs.carname.valid && this.$refs.carId.valid && this.$refs.newCarDocumentNumber.valid && this.$refs.contactName.valid && this.$refs.contactPhone.valid && this.$refs.engineNumber.valid && this.$refs.carNumber.valid) {
           return true

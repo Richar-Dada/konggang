@@ -82,7 +82,8 @@
         contactName: '',
         contactPhone: '',
         carNumber: '',
-        showNotice: false
+        showNotice: false,
+        isRead: false
       }
     },
     methods: {
@@ -102,6 +103,7 @@
       },
       openNotice () {
         this.showNotice = true
+        this.isRead = true
       },
       booking () {
         if (this._isAllValid()) {
@@ -133,6 +135,12 @@
         }
       },
       _isAllValid () {
+        if (!this.isRead) {
+          this.showToast = true
+          this.toastMsg = '请阅读一遍预约须知'
+          return false
+        }
+
         if (this.carname && this.carId.length > 2 && this.contactName && this.contactPhone && this.carNumber) {
           if (this.$refs.carname.valid && this.$refs.carId.valid && this.$refs.contactName.valid && this.$refs.contactPhone.valid && this.$refs.carNumber.valid) {
             return true
