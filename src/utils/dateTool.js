@@ -95,7 +95,7 @@ export function getSchedulDateQianchu () {
         date: dateStr,
         fullDate: year + '年' + dateStr
       }
-      if (i > 1) result.push(tem)
+      if (i > 0) result.push(tem)
       i++
     }
   }

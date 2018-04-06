@@ -26,8 +26,8 @@ export function sendCode (data) {
   return Axios.post(url, data)
 }
 
-export function getScheList (activeDate) {
-  let url = process.env.BASE_URL + '/api/v1/schedul/' + Base64.encode(activeDate)
+export function getScheList (activeDate, type) {
+  let url = process.env.BASE_URL + '/api/v1/schedul/' + Base64.encode(activeDate) + '&' + type
   return Axios.get(url)
 }
 

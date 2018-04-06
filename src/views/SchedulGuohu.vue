@@ -44,13 +44,13 @@
       }
     },
     methods: {
-      getSchedul (activeIndex) {
+      getSchedul (activeIndex, type = 'guohu') {
         this.schedulList = []
         this.selectedIndex = activeIndex
         this.$vux.loading.show({
           text: 'Loading'
         })
-        getScheList(this.dateList[activeIndex].fullDate)
+        getScheList(this.dateList[activeIndex].fullDate, type)
           .then((res) => {
             this.$vux.loading.hide()
             if (res.data.resultCode === 200) {
