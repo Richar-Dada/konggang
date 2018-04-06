@@ -46,12 +46,15 @@
 </template>
 
 <script>
-  import { Group, XInput, XButton, Toast, XHeader, Popup, Cell } from 'vux'
+  import { TransferDom, Group, XInput, XButton, Toast, XHeader, Popup, Cell } from 'vux'
   import { checkCarId, checkPhone } from '@/utils/validateTool'
   import { booking } from '@/service'
 
   export default {
     name: 'schedul',
+    directives: {
+      TransferDom
+    },
     components: {
       Group,
       XInput,
@@ -130,8 +133,8 @@
         }
       },
       _isAllValid () {
-        if (this.carname && this.carId.length > 2) {
-          if (this.$refs.carname.valid && this.$refs.carId.valid) {
+        if (this.carname && this.carId.length > 2 && this.contactName && this.contactPhone && this.carNumber) {
+          if (this.$refs.carname.valid && this.$refs.carId.valid && this.$refs.contactName.valid && this.$refs.contactPhone.valid && this.$refs.carNumber.valid) {
             return true
           }
           this.showToast = true

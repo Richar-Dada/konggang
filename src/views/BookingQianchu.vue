@@ -11,7 +11,7 @@
       <x-input title="原车主姓名" ref="oldCarOwner" label-width="2.5rem" required v-model="oldCarOwner" placeholder="必填"></x-input>
       <x-input title="新车主姓名" ref="newCarOwner" label-width="2.5rem" required v-model="newCarOwner" placeholder="必填"></x-input>
       <x-address class="x-address" title="迁入地" v-model="immigrationAddress" raw-value :list="addressData" hide-district></x-address>
-      <selector ref="newCarDocumentType" title="新车主证件" placeholder="请选择一个" :options="documentType" v-model="newCarDocumentType"></selector>
+      <selector ref="newCarDocumentType" title="新车主证件" :options="documentType" v-model="newCarDocumentType"></selector>
       <x-input title="新车主证件号码" ref="newCarDocumentNumber" label-width="3.5rem" keyboard="number" :min="18" :max="18" :is-type="beUserID" v-model="newCarDocumentNumber" placeholder="必填"></x-input>
     </group>
     <div class="function-box">
@@ -52,12 +52,15 @@
 </template>
 
 <script>
-import { Group, Popup, Cell, XInput, XHeader, Checker, CheckerItem, XTextarea, XButton, Toast, ChinaAddressV4Data, Value2nameFilter as value2name, XAddress, Selector } from 'vux'
+import { TransferDom, Group, Popup, Cell, XInput, XHeader, Checker, CheckerItem, XTextarea, XButton, Toast, ChinaAddressV4Data, Value2nameFilter as value2name, XAddress, Selector } from 'vux'
 import { checkCarId, checkUserID, checkPhone } from '@/utils/validateTool'
 import { booking } from '@/service'
 
 export default {
   name: 'schedul',
+  directives: {
+    TransferDom
+  },
   components: {
     Group,
     XInput,
@@ -97,7 +100,7 @@ export default {
         { key: '统一社会代码', value: '统一社会代码' }],
       addressData: ChinaAddressV4Data,
       showToast: false,
-      newCarDocumentType: '',
+      newCarDocumentType: '身份证',
       newCarDocumentNumber: '',
       contactName: '',
       contactPhone: '',
@@ -169,8 +172,8 @@ export default {
       }
     },
     _isAllValid() {
-      if (this.oldCarOwner && this.carname && this.carId.length > 2 && this.newCarOwner && this.newCarDocumentType && this.newCarDocumentNumber) {
-        if (this.$refs.oldCarOwner.valid && this.$refs.carname.valid && this.$refs.carId.valid && this.$refs.newCarOwner.valid && this.$refs.newCarDocumentNumber.valid) {
+      if (this.oldCarOwner && this.newCarOwner && this.carname && this.carId.length > 2 && this.newCarDocumentNumber && this.contactName && this.contactPhone && this.engineNumber && this.carNumber) {
+        if (this.$refs.oldCarOwner.valid && this.$refs.newCarOwner.valid && this.$refs.carname.valid && this.$refs.carId.valid && this.$refs.newCarDocumentNumber.valid && this.$refs.contactName.valid && this.$refs.contactPhone.valid && this.$refs.engineNumber.valid && this.$refs.carNumber.valid) {
           return true
         }
         this.showToast = true
