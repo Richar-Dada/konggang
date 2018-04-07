@@ -16,6 +16,7 @@
         <p class="schedul-item-text">{{ item.duration }}</p>
       </div>
       <div class="no-result" v-if="noResult">
+        <icon type="warn" is-msg></icon>
         <p class="no-result-text">{{ errorMsg }}</p>
       </div>
     </div>
@@ -23,7 +24,7 @@
 </template>
 
 <script>
-  import { Tab, TabItem, Masker } from 'vux'
+  import { Tab, TabItem, Masker, Icon } from 'vux'
   import { getSchedulDateGuohu } from '../utils/dateTool'
   import { getScheList } from '@/service'
 
@@ -32,7 +33,8 @@
     components: {
       Tab,
       TabItem,
-      Masker
+      Masker,
+      Icon
     },
     data () {
       return {
@@ -98,6 +100,6 @@
   .no-result-text{
     line-height: 100px;
     text-align: center;
-    font-size: 24px;
+    font-size: 22px;
   }
 </style>
