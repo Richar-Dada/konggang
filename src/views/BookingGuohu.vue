@@ -7,6 +7,7 @@
       <x-input title="品牌型号" ref="carname" label-width="2.5rem" required v-model="carname" placeholder="必填,如本田飞度"></x-input>
       <x-input title="车牌号" ref="carId" label-width="2.5rem" :min="7" :max="7" required v-model="carId" :is-type="beCarId"  placeholder="必填,这输入车牌号"></x-input>
       <x-input title="车架号" ref="carNumber" label-width="2.5rem" required v-model="carNumber" :min="17" :max="17"  placeholder="必填,请输入17位车架号"></x-input>
+      <x-input title="发动机号" ref="engineNumber" label-width="2.5rem" required v-model="engineNumber" :min="4" :max="4" placeholder="必填,发动机号码后四位"></x-input>
     </group>
     <div class="function-box">
       <x-button class="submit-btn" type="primary" @click.native="booking">提 交</x-button>
@@ -82,6 +83,7 @@
         contactName: '',
         contactPhone: '',
         carNumber: '',
+        engineNumber: '',
         showNotice: false,
         isRead: false
       }
@@ -116,6 +118,7 @@
             carNumber: this.carNumber,
             carname: this.carname,
             carId: this.carId,
+            engineNumber: this.engineNumber,
             createTime: new Date().getTime(),
             createBy: localStorage.getItem('phone')
           }
@@ -141,8 +144,8 @@
           return false
         }
 
-        if (this.carname && this.carId.length > 2 && this.contactName && this.contactPhone && this.carNumber) {
-          if (this.$refs.carname.valid && this.$refs.carId.valid && this.$refs.contactName.valid && this.$refs.contactPhone.valid && this.$refs.carNumber.valid) {
+        if (this.carname && this.carId.length > 2 && this.contactName && this.contactPhone && this.carNumber && this.engineNumber) {
+          if (this.$refs.carname.valid && this.$refs.carId.valid && this.$refs.contactName.valid && this.$refs.contactPhone.valid && this.$refs.carNumber.valid && this.$refs.engineNumber.valid) {
             return true
           }
           this.showToast = true
