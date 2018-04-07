@@ -5,7 +5,7 @@
       <x-input title="联系人姓名" ref="contactName" label-width="2.5rem" required v-model="contactName"  placeholder="必填,请输入姓名"></x-input>
       <x-input title="联系电话" ref="contactPhone" label-width="2.5rem" required v-model="contactPhone" :is-type="bePhone"  placeholder="必填,请输入电话号码"></x-input>
       <x-input title="品牌型号" ref="carname" label-width="2.5rem" required v-model="carname" placeholder="必填,如本田飞度"></x-input>
-      <x-input title="车牌号" ref="carId" label-width="2.5rem" required v-model="carId" :is-type="beCarId"  placeholder="必填,这输入车牌号"></x-input>
+      <x-input title="车牌号" ref="carId" label-width="2.5rem" :min="5" :max="5" required v-model="carId" :is-type="beCarId"  placeholder="必填,这输入车牌号"></x-input>
       <x-input title="车架号" ref="carNumber" label-width="2.5rem" required v-model="carNumber" :min="17" :max="17"  placeholder="必填,请输入17位车架号"></x-input>
     </group>
     <div class="function-box">
