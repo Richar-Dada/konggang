@@ -99,7 +99,7 @@ export default {
         { key: '统一社会代码', value: '统一社会代码' }],
       addressData: ChinaAddressV4Data,
       showToast: false,
-      newCarDocumentType: [],
+      newCarDocumentType: null,
       newCarDocumentNumber: '',
       contactName: '',
       contactPhone: '',
