@@ -52,7 +52,7 @@ export function getSchedulDateQianchu () {
   let date = d.getUTCDate()
   let i = 0
   let result = []
-  while (i < 10) {
+  while (i < 9) {
     if (year % 4 === 0 && m === 2) {
       date = (date + 1) % 28
       m = m + Math.floor((date / 28))
@@ -73,7 +73,7 @@ export function getSchedulDateQianchu () {
         date: dateStr,
         fullDate: year + '年' + dateStr
       }
-      if (i > 2) result.push(tem)
+      if (i > 1) result.push(tem)
       i++
     }
   }
