@@ -10,8 +10,8 @@
       <x-input title="发动机号" ref="engineNumber" label-width="2.5rem" required v-model="engineNumber" :min="4" :max="4" placeholder="必填,发动机号码后四位"></x-input>
       <x-input title="原车主姓名" ref="oldCarOwner" label-width="2.5rem" required v-model="oldCarOwner" placeholder="必填"></x-input>
       <x-input title="新车主姓名" ref="newCarOwner" label-width="2.5rem" required v-model="newCarOwner" placeholder="必填"></x-input>
-      <x-address class="x-address" title="迁入地" v-model="immigrationAddress" raw-value :list="addressData" hide-district></x-address>
-      <selector ref="newCarDocumentType" title="新车主证件" :options="documentType" v-model="newCarDocumentType"></selector>
+      <x-address class="x-address" title="迁入地" v-model="immigrationAddress" placeholder="请选择地址" raw-value :list="addressData" hide-district></x-address>
+      <selector ref="newCarDocumentType" title="新车主证件" :options="documentType" placeholder="请选择证件" v-model="newCarDocumentType"></selector>
       <x-input title="新车主证件号码" ref="newCarDocumentNumber" label-width="3.5rem" keyboard="number" :min="18" :max="18" :is-type="beUserID" v-model="newCarDocumentNumber" placeholder="必填"></x-input>
     </group>
     <div class="function-box">
@@ -40,8 +40,7 @@
           </cell>
           <cell value-align="left">11.	业务办理声明（前台领用，填写区有模板）</cell>
           <cell value-align="left">12.	机动车业务告知书（前台领用，填写区有模板）</cell>
-          <cell value-align="left">13.	若新车主需要保留指标书上的车牌号码，需要填写<span style="color:red">机动车注册登记使用原号牌号码申请表</span>（前台领用，填写区有模板）</cell>
-          <cell value-align="left">14.	<span style="color:red">2003年10月以前注册登记的车辆无法在站点办理迁出</span></cell>
+          <cell value-align="left">13.	<span style="color:red">2003年10月以前注册登记的车辆无法在站点办理迁出</span></cell>
         </group>
         <div style="padding: 15px;">
           <x-button @click.native="showNotice = false" type="primary"> 关 闭 </x-button>
@@ -93,14 +92,14 @@ export default {
       bookingTime: '',
       oldCarOwner: '',
       newCarOwner: '',
-      immigrationAddress: ['广东省', '清远市'],
+      immigrationAddress: [],
       documentType: [
         { key: '身份证', value: '身份证' },
         { key: '居住证', value: '居住证' },
         { key: '统一社会代码', value: '统一社会代码' }],
       addressData: ChinaAddressV4Data,
       showToast: false,
-      newCarDocumentType: '身份证',
+      newCarDocumentType: [],
       newCarDocumentNumber: '',
       contactName: '',
       contactPhone: '',
