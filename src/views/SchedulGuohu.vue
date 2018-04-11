@@ -95,7 +95,8 @@
   }
   .no-result{
     height: 100px;
-    margin: 10px 10px 0 10px;
+    margin: 30px 10px 0 10px;
+    text-align: center;
   }
   .no-result-text{
     line-height: 100px;
