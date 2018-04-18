@@ -75,6 +75,9 @@
                 this.loginErrorMsg = res.data.errorMsg
               }
             })
+        } else {
+          this.loginError = true
+          this.loginErrorMsg = '请输入信息'
         }
       }
     }
