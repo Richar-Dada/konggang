@@ -12,9 +12,9 @@ const holiday = [
 
 export function getSchedulDateGuohu () {
   let d = new Date()
-  let year = d.getUTCFullYear()
-  let m = d.getUTCMonth() + 1
-  let date = d.getUTCDate()
+  let year = d.getFullYear()
+  let m = d.getMonth() + 1
+  let date = d.getDate()
   let i = 0
   let result = []
   let flag = false
@@ -66,9 +66,9 @@ export function getSchedulDateGuohu () {
 
 export function getSchedulDateQianchu () {
   let d = new Date()
-  let year = d.getUTCFullYear()
-  let m = d.getUTCMonth() + 1
-  let date = d.getUTCDate()
+  let year = d.getFullYear()
+  let m = d.getMonth() + 1
+  let date = d.getDate()
   let i = 0
   let result = []
   let flag = false
