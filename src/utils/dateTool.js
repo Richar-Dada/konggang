@@ -17,19 +17,38 @@ export function getSchedulDateGuohu () {
   let date = d.getUTCDate()
   let i = 0
   let result = []
+  let flag = false
   while (i < 7) {
-    if (year % 4 === 0 && m === 2) {
-      date = (date + 1) % 28
-      m = m + Math.floor((date / 28))
-    } else if (year % 4 !== 0 && m === 2) {
-      date = (date + 1) % 29
-      m = m + Math.floor((date / 29))
-    } else if (m === 4 || m === 6 || m === 9 || m === 11) {
-      date = (date + 1) % 30
-      m = m + Math.floor((date / 30))
+    if (!flag) {
+      date = date + 1
     } else {
-      date = (date + 1) % 31
+      flag = !flag
+    }
+
+    if (year % 4 === 0 && m === 2) {
+      m = m + Math.floor((date / 29))
+      if (date === 29) {
+        date = 1
+        flag = true
+      }
+    } else if (year % 4 !== 0 && m === 2) {
+      m = m + Math.floor((date / 30))
+      if (date === 30) {
+        date = 1
+        flag = true
+      }
+    } else if (m === 4 || m === 6 || m === 9 || m === 11) {
       m = m + Math.floor((date / 31))
+      if (date === 31) {
+        date = 1
+        flag = true
+      }
+    } else {
+      m = m + Math.floor((date / 32))
+      if (date === 32) {
+        date = 1
+        flag = true
+      }
     }
 
     let dateStr = m + '月' + date + '日'
@@ -52,19 +71,39 @@ export function getSchedulDateQianchu () {
   let date = d.getUTCDate()
   let i = 0
   let result = []
+  let flag = false
+
   while (i < 9) {
-    if (year % 4 === 0 && m === 2) {
-      date = (date + 1) % 28
-      m = m + Math.floor((date / 28))
-    } else if (year % 4 !== 0 && m === 2) {
-      date = (date + 1) % 29
-      m = m + Math.floor((date / 29))
-    } else if (m === 4 || m === 6 || m === 9 || m === 11) {
-      date = (date + 1) % 30
-      m = m + Math.floor((date / 30))
+    if (!flag) {
+      date = date + 1
     } else {
-      date = (date + 1) % 31
+      flag = !flag
+    }
+
+    if (year % 4 === 0 && m === 2) {
+      m = m + Math.floor((date / 29))
+      if (date === 29) {
+        date = 1
+        flag = true
+      }
+    } else if (year % 4 !== 0 && m === 2) {
+      m = m + Math.floor((date / 30))
+      if (date === 30) {
+        date = 1
+        flag = true
+      }
+    } else if (m === 4 || m === 6 || m === 9 || m === 11) {
       m = m + Math.floor((date / 31))
+      if (date === 31) {
+        date = 1
+        flag = true
+      }
+    } else {
+      m = m + Math.floor((date / 32))
+      if (date === 32) {
+        date = 1
+        flag = true
+      }
     }
 
     let dateStr = m + '月' + date + '日'
