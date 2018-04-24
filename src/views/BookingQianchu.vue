@@ -2,14 +2,15 @@
   <div class="booking">
     <x-header title="迁出提档"></x-header>
     <group class="input-list">
-      <x-input title="联系人姓名" ref="contactName" label-width="2.5rem" required v-model="contactName"  placeholder="必填,请输入姓名"></x-input>
-      <x-input title="联系电话" ref="contactPhone" label-width="2.5rem" required v-model="contactPhone" :is-type="bePhone"  placeholder="必填,请输入电话号码"></x-input>
-      <x-input title="品牌型号" ref="carname" label-width="2.5rem" required v-model="carname" placeholder="必填,如:本田飞度"></x-input>
-      <x-input title="车牌号" ref="carId" label-width="2.5rem" required  :min="7" :max="7" v-model="carId" :is-type="beCarId" placeholder="必填,这输入车牌号"></x-input>
-      <x-input title="车架号" ref="carNumber" label-width="2.5rem" required v-model="carNumber" :min="17" :max="17"  placeholder="必填,请输入17位车架号"></x-input>
-      <x-input title="发动机号" ref="engineNumber" label-width="2.5rem" required v-model="engineNumber" :min="4" :max="4" placeholder="必填,发动机号码后四位"></x-input>
-      <x-input title="原车主姓名" ref="oldCarOwner" label-width="2.5rem" required v-model="oldCarOwner" placeholder="必填"></x-input>
-      <x-input title="新车主姓名" ref="newCarOwner" label-width="2.5rem" required v-model="newCarOwner" placeholder="必填"></x-input>
+      <divider class="divider-text">为保证业务顺利完成请如实填写以下资料</divider>
+      <x-input title="业务联系人" ref="contactName" label-width="3rem" required v-model="contactName"  placeholder="必填,请输入姓名"></x-input>
+      <x-input title="业务联系电话" ref="contactPhone" label-width="3rem" required v-model="contactPhone" :is-type="bePhone" :min="11" :max="11"  placeholder="必填,请输入电话号码"></x-input>
+      <x-input title="品牌型号" ref="carname" label-width="3rem" required v-model="carname" placeholder="必填,如:本田飞度"></x-input>
+      <x-input title="车牌号" ref="carId" label-width="3rem" required  :min="7" :max="7" v-model="carId" :is-type="beCarId" placeholder="必填,这输入车牌号"></x-input>
+      <x-input title="车辆识别代码" ref="carNumber" label-width="3rem" required v-model="carNumber" :min="6" :max="6"  placeholder="必填,请输入后6位"></x-input>
+      <x-input title="发动机号" ref="engineNumber" label-width="3rem" required v-model="engineNumber" :min="4" :max="4" placeholder="必填,发动机号码后4位"></x-input>
+      <x-input title="原车主姓名" ref="oldCarOwner" label-width="3rem" required v-model="oldCarOwner" placeholder="必填"></x-input>
+      <x-input title="新车主姓名" ref="newCarOwner" label-width="3rem" required v-model="newCarOwner" placeholder="必填"></x-input>
       <x-address class="x-address" title="迁入地" v-model="immigrationAddress" placeholder="请选择地址" raw-value :list="addressData" hide-district></x-address>
       <selector ref="newCarDocumentType" title="新车主证件" :options="documentType" placeholder="请选择证件" v-model="newCarDocumentType"></selector>
       <x-input title="新车主证件号码" ref="newCarDocumentNumber" label-width="3.5rem" :min="18" :max="18" v-model="newCarDocumentNumber" placeholder="必填"></x-input>
@@ -51,7 +52,7 @@
 </template>
 
 <script>
-import { TransferDom, Group, Popup, Cell, XInput, XHeader, Checker, CheckerItem, XTextarea, XButton, Toast, ChinaAddressV4Data, Value2nameFilter as value2name, XAddress, Selector } from 'vux'
+import { Divider, TransferDom, Group, Popup, Cell, XInput, XHeader, Checker, CheckerItem, XTextarea, XButton, Toast, ChinaAddressV4Data, Value2nameFilter as value2name, XAddress, Selector } from 'vux'
 import { checkCarId, checkUserID, checkPhone } from '@/utils/validateTool'
 import { booking } from '@/service'
 
@@ -61,6 +62,7 @@ export default {
     TransferDom
   },
   components: {
+    Divider,
     Group,
     XInput,
     XHeader,
@@ -252,5 +254,9 @@ export default {
   border-top: 1px solid #D9D9D9;
   left: 16px;
   transform: scaleY(0.5);
+}
+
+.divider-text{
+  font-size: 12px;
 }
 </style>

@@ -2,12 +2,12 @@
   <div class="login">
     <x-header title="注册账号"></x-header>
     <group class="input-list">
-      <x-input title="真实姓名" ref="username" label-width="3rem" required v-model="username" :is-type="beUsername" placeholder="请输入用户名"></x-input>
-      <x-input title="密 码" ref="password" type="password" label-width="3rem" required v-model="password" :min="6" :is-type="bePassword" placeholder="密码只支持英文和数字"></x-input>
+      <x-input title="真实姓名" ref="username" label-width="3rem" required v-model="username" :is-type="beUsername" placeholder="请输入真实姓名"></x-input>
+      <x-input title="登陆密码" ref="password" type="password" label-width="3rem" required v-model="password" :min="6" :is-type="bePassword" placeholder="密码只支持英文和数字"></x-input>
       <x-input title="密码确认" ref="password2" type="password" label-width="3rem" required v-model="password2" :equal-with="password" :is-type="bePassword" placeholder="请再次输入密码"></x-input>
       <x-input title="身份证号" ref="document" label-width="3rem" required v-model="document" :is-type="beID" placeholder="请输入身份证"></x-input>
-      <x-input title="车行/公司名称" label-width="3rem" v-model="companyName" placeholder="请输入车行/公司名称"></x-input>
-      <x-input title="车行/公司地址" label-width="3rem" v-model="companyAddress" placeholder="请输入车行/公司地址"></x-input>
+      <x-input title="公司名称" ref="companyName" label-width="3rem" v-model="companyName" required placeholder="请输入公司名称"></x-input>
+      <x-input title="公司地址" ref="companyAddress" label-width="3rem" v-model="companyAddress" required placeholder="请输入公司地址"></x-input>
       <x-input title="手机号码" ref="phone" label-width="3rem" required v-model="phone" keyboard="number" :is-type="bePhone" :max="11" placeholder="请输入手机号码"></x-input>
       <x-input title="验证码" ref="code" label-width="3rem" class="weui-vcode" required :min="6" :max="6" v-model="code">
         <x-button slot="right" type="primary" mini :disabled="!canSendCode" @click.native="sendCode">{{sendCodeBtnText}}</x-button>
@@ -111,8 +111,8 @@
         }
       },
       _isAllValid () {
-        if (this.username && this.password && this.phone && this.document && this.code) {
-          if (this.$refs.username.valid && this.$refs.password2.valid && this.$refs.password.valid && this.$refs.phone.valid && this.$refs.document.valid && this.$refs.code.valid) {
+        if (this.username && this.password && this.phone && this.document && this.code && this.companyName && this.companyAddress) {
+          if (this.$refs.username.valid && this.$refs.password2.valid && this.$refs.password.valid && this.$refs.phone.valid && this.$refs.document.valid && this.$refs.code.valid && this.$refs.companyName.valid && this.$refs.companyAddress.valid) {
             return true
           }
           this.showToast = true
