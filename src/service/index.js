@@ -41,6 +41,11 @@ export function getBooking (username) {
   return Axios.get(url)
 }
 
+export function deleteBooking (id) {
+  let url = process.env.BASE_URL + '/api/v1/booking/' + id
+  return Axios.delete(url)
+}
+
 export function remark (data) {
   let url = process.env.BASE_URL + '/api/v1/remark'
   return Axios.post(url, data)
