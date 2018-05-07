@@ -14,7 +14,7 @@
           <td>{{ order.serviceType }}</td>
           <td>{{ order.carId }}</td>
           <td>{{ order.bookingDate + ' ' + order.bookingTime }}</td>
-          <td><x-button mini type="primary" :disabled="order.sendMsg !== '否'" @click.native="deleteOrder(order.id)">删除</x-button></td>
+          <td><x-button mini type="primary" @click.native="deleteOrder(order.id)">删除</x-button></td>
         </tr>
         <tr v-if="noResult">
           <td></td>
