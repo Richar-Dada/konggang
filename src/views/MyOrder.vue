@@ -83,6 +83,9 @@
             this.showToast = true
             if (res.data.resultCode === 200) {
               this.errorMsg = res.data.successMsg
+              setTimeout(() => {
+                location.reload()
+              }, 1000)
             } else {
               this.errorMsg = res.data.errorMsg
             }
