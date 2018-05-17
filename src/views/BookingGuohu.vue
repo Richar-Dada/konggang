@@ -9,6 +9,7 @@
       <x-input title="车牌号" ref="carId" label-width="3rem" :min="7" :max="7" required v-model="carId" :is-type="beCarId"  placeholder="必填,这输入车牌号"></x-input>
       <x-input title="车辆识别代码" ref="carNumber" label-width="3rem" required v-model="carNumber" :min="6" :max="6"  placeholder="必填,请输入后6位"></x-input>
       <x-input title="发动机号" ref="engineNumber" label-width="3rem" required v-model="engineNumber" :min="4" :max="4" placeholder="必填,发动机号码后4位"></x-input>
+      <x-input title="备注" ref="mark" label-width="3rem" v-model="mark" :max="100" placeholder="特殊情况请备注"></x-input>
     </group>
     <div class="function-box">
       <x-button class="submit-btn" type="primary" @click.native="booking">提 交</x-button>
@@ -87,7 +88,8 @@
         carNumber: '',
         engineNumber: '',
         showNotice: false,
-        isRead: false
+        isRead: false,
+        mark: ''
       }
     },
     methods: {
@@ -120,6 +122,7 @@
             carNumber: this.carNumber,
             carname: this.carname,
             carId: this.carId,
+            mark: this.mark,
             engineNumber: this.engineNumber,
             createTime: new Date().getTime(),
             createBy: localStorage.getItem('phone')

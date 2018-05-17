@@ -14,6 +14,7 @@
       <x-address class="x-address" title="迁入地" v-model="immigrationAddress" placeholder="请选择地址" raw-value :list="addressData" hide-district></x-address>
       <selector ref="newCarDocumentType" title="新车主证件" :options="documentType" placeholder="请选择证件" v-model="newCarDocumentType"></selector>
       <x-input title="新车主证件号码" ref="newCarDocumentNumber" label-width="3.5rem" :min="18" :max="18" v-model="newCarDocumentNumber" placeholder="必填"></x-input>
+      <x-input title="备注" ref="mark" label-width="3rem" v-model="mark" :max="100" placeholder="特殊情况请备注"></x-input>
     </group>
     <div class="function-box">
       <x-button class="submit-btn" type="primary" @click.native="booking">提 交</x-button>
@@ -107,7 +108,8 @@ export default {
       contactPhone: '',
       carNumber: '',
       showNotice: false,
-      isRead: false
+      isRead: false,
+      mark: ''
     }
   },
   methods: {
@@ -156,6 +158,7 @@ export default {
           immigrationAddress: this.getName(this.immigrationAddress),
           newCarDocumentType: this.newCarDocumentType,
           newCarDocumentNumber: this.newCarDocumentNumber,
+          mark: this.mark,
           createTime: new Date().getTime(),
           createBy: localStorage.getItem('phone')
         }
