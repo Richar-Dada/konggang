@@ -93,7 +93,8 @@ export function checkPhone (value) {
  * @param {string} 
  */
 export function checkCarId (value) {
-  if (value.length > 2) {
+  const regStr = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/
+  if (regStr.test(value)) {
     return {
       valid: true,
       msg: ''
@@ -101,7 +102,49 @@ export function checkCarId (value) {
   } else {
     return {
       valid: false,
-      msg: '请输入车牌号'
+      msg: '请输入正确车牌号'
+    }
+  }
+}
+
+/**
+ * @author by Zicong
+ * @date 2018-05-22
+ * @description 只能输入A-Z0-6
+ * @param {string} 
+ */
+export function checkEngineNumber (value) {
+  const regStr = /\w{4}/
+  if (regStr.test(value)) {
+    return {
+      valid: true,
+      msg: ''
+    }
+  } else {
+    return {
+      valid: false,
+      msg: '只能输入字母和数字'
+    }
+  }
+}
+
+/**
+ * @author by Zicong
+ * @date 2018-05-22
+ * @description 只能输入A-Z0-6
+ * @param {string} 
+ */
+export function checkCarNumber (value) {
+  const regStr = /\w{6}/
+  if (regStr.test(value)) {
+    return {
+      valid: true,
+      msg: ''
+    }
+  } else {
+    return {
+      valid: false,
+      msg: '只能输入字母和数字'
     }
   }
 }

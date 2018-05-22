@@ -4,11 +4,11 @@
     <group class="input-list">
       <divider class="divider-text">为保证业务顺利完成请如实填写以下资料</divider>    
       <x-input title="业务联系人" ref="contactName" label-width="3rem" required v-model="contactName"  placeholder="必填,请输入姓名"></x-input>
-      <x-input title="业务联系电话" ref="contactPhone" label-width="3rem" required v-model="contactPhone" :is-type="bePhone"  placeholder="必填,请输入电话号码"></x-input>
+      <x-input title="业务联系电话" ref="contactPhone" label-width="3rem" required v-model="contactPhone" :max="11" :is-type="bePhone"  placeholder="必填,请输入电话号码"></x-input>
       <x-input title="品牌型号" ref="carname" label-width="3rem" required v-model="carname" placeholder="必填,如本田飞度"></x-input>
       <x-input title="车牌号" ref="carId" label-width="3rem" :min="7" :max="7" required v-model="carId" :is-type="beCarId"  placeholder="必填,这输入车牌号"></x-input>
-      <x-input title="车辆识别代码" ref="carNumber" label-width="3rem" required v-model="carNumber" :min="6" :max="6"  placeholder="必填,请输入后6位"></x-input>
-      <x-input title="发动机号" ref="engineNumber" label-width="3rem" required v-model="engineNumber" :min="4" :max="4" placeholder="必填,发动机号码后4位"></x-input>
+      <x-input title="车辆识别代码" ref="carNumber" label-width="3rem" required v-model="carNumber" :min="6" :max="6" :is-type="beCarNumber" placeholder="必填,请输入后6位"></x-input>
+      <x-input title="发动机号" ref="engineNumber" label-width="3rem" required v-model="engineNumber" :min="4" :max="4" :is-type="beEngineNumber" placeholder="必填,发动机号码后4位"></x-input>
       <x-input title="备注" ref="mark" label-width="3rem" v-model="mark" :max="100" placeholder="特殊情况请备注"></x-input>
     </group>
     <div class="function-box">
@@ -50,7 +50,7 @@
 
 <script>
   import { Divider, TransferDom, Group, XInput, XButton, Toast, XHeader, Popup, Cell } from 'vux'
-  import { checkCarId, checkPhone } from '@/utils/validateTool'
+  import { checkCarId, checkPhone, checkCarNumber, checkEngineNumber } from '@/utils/validateTool'
   import { booking } from '@/service'
 
   export default {
@@ -95,6 +95,20 @@
     methods: {
       beCarId (value) {
         const result = checkCarId(value)
+        return {
+          valid: result.valid,
+          msg: result.msg
+        }
+      },
+      beCarNumber (value) {
+        const result = checkCarNumber(value)
+        return {
+          valid: result.valid,
+          msg: result.msg
+        }
+      },
+      beEngineNumber (value) {
+        const result = checkEngineNumber(value)
         return {
           valid: result.valid,
           msg: result.msg

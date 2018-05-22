@@ -7,8 +7,8 @@
       <x-input title="业务联系电话" ref="contactPhone" label-width="3rem" required v-model="contactPhone" :is-type="bePhone" :min="11" :max="11"  placeholder="必填,请输入电话号码"></x-input>
       <x-input title="品牌型号" ref="carname" label-width="3rem" required v-model="carname" placeholder="必填,如:本田飞度"></x-input>
       <x-input title="车牌号" ref="carId" label-width="3rem" required  :min="7" :max="7" v-model="carId" :is-type="beCarId" placeholder="必填,这输入车牌号"></x-input>
-      <x-input title="车辆识别代码" ref="carNumber" label-width="3rem" required v-model="carNumber" :min="6" :max="6"  placeholder="必填,请输入后6位"></x-input>
-      <x-input title="发动机号" ref="engineNumber" label-width="3rem" required v-model="engineNumber" :min="4" :max="4" placeholder="必填,发动机号码后4位"></x-input>
+      <x-input title="车辆识别代码" ref="carNumber" label-width="3rem" required v-model="carNumber" :min="6" :max="6" :is-type="beCarNumber"  placeholder="必填,请输入后6位"></x-input>
+      <x-input title="发动机号" ref="engineNumber" label-width="3rem" required v-model="engineNumber" :min="4" :max="4" :is-type="beEngineNumber" placeholder="必填,发动机号码后4位"></x-input>
       <x-input title="原车主姓名" ref="oldCarOwner" label-width="3rem" required v-model="oldCarOwner" placeholder="必填"></x-input>
       <x-input title="新车主姓名" ref="newCarOwner" label-width="3rem" required v-model="newCarOwner" placeholder="必填"></x-input>
       <x-address class="x-address" title="迁入地" v-model="immigrationAddress" placeholder="请选择地址" raw-value :list="addressData" hide-district></x-address>
@@ -54,7 +54,7 @@
 
 <script>
 import { Divider, TransferDom, Group, Popup, Cell, XInput, XHeader, Checker, CheckerItem, XTextarea, XButton, Toast, ChinaAddressV4Data, Value2nameFilter as value2name, XAddress, Selector } from 'vux'
-import { checkCarId, checkUserID, checkPhone } from '@/utils/validateTool'
+import { checkCarId, checkUserID, checkPhone, checkCarNumber, checkEngineNumber } from '@/utils/validateTool'
 import { booking } from '@/service'
 
 export default {
@@ -133,6 +133,20 @@ export default {
     },
     beCarId(value) {
       const result = checkCarId(value)
+      return {
+        valid: result.valid,
+        msg: result.msg
+      }
+    },
+    beCarNumber (value) {
+      const result = checkCarNumber(value)
+      return {
+        valid: result.valid,
+        msg: result.msg
+      }
+    },
+    beEngineNumber (value) {
+      const result = checkEngineNumber(value)
       return {
         valid: result.valid,
         msg: result.msg
