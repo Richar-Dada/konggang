@@ -100,7 +100,7 @@
     text-align: center;
   }
   .no-result-text{
-    line-height: 100px;
+    line-height: 100px; /* no */
     text-align: center;
     font-size: 22px;
   }
