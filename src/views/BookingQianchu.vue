@@ -7,7 +7,6 @@
       <x-input title="业务联系电话" ref="contactPhone" label-width="3rem" required v-model="contactPhone" :is-type="bePhone" :min="11" :max="11"  placeholder="必填,请输入电话号码"></x-input>
       <x-input title="品牌型号" ref="carname" label-width="3rem" required v-model="carname" placeholder="必填,如:本田飞度"></x-input>
       <x-input title="车牌号" ref="carId" label-width="3rem" required  :min="7" :max="7" v-model="carId" :is-type="beCarId" placeholder="必填,这输入车牌号"></x-input>
-      <x-input title="车辆识别代码" ref="carNumber" label-width="3rem" required v-model="carNumber" :min="6" :max="6" :is-type="beCarNumber"  placeholder="必填,请输入后6位"></x-input>
       <x-input title="发动机号" ref="engineNumber" label-width="3rem" required v-model="engineNumber" :min="4" :max="4" :is-type="beEngineNumber" placeholder="必填,发动机号码后4位"></x-input>
       <x-input title="原车主姓名" ref="oldCarOwner" label-width="3rem" required v-model="oldCarOwner" placeholder="必填"></x-input>
       <x-input title="新车主姓名" ref="newCarOwner" label-width="3rem" required v-model="newCarOwner" placeholder="必填"></x-input>
@@ -198,8 +197,8 @@ export default {
         return false
       }
 
-      if (this.oldCarOwner && this.newCarOwner && this.carname && this.carId.length > 2 && this.newCarDocumentNumber && this.contactName && this.contactPhone && this.engineNumber && this.carNumber) {
-        if (this.$refs.oldCarOwner.valid && this.$refs.newCarOwner.valid && this.$refs.carname.valid && this.$refs.carId.valid && this.$refs.newCarDocumentNumber.valid && this.$refs.contactName.valid && this.$refs.contactPhone.valid && this.$refs.engineNumber.valid && this.$refs.carNumber.valid) {
+      if (this.oldCarOwner && this.newCarOwner && this.carname && this.carId.length > 2 && this.newCarDocumentNumber && this.contactName && this.contactPhone && this.engineNumber) {
+        if (this.$refs.oldCarOwner.valid && this.$refs.newCarOwner.valid && this.$refs.carname.valid && this.$refs.carId.valid && this.$refs.newCarDocumentNumber.valid && this.$refs.contactName.valid && this.$refs.contactPhone.valid && this.$refs.engineNumber.valid) {
           return true
         }
         this.showToast = true

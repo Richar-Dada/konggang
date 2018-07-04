@@ -7,8 +7,9 @@
       <x-input title="业务联系电话" ref="contactPhone" label-width="3rem" required v-model="contactPhone" :max="11" :is-type="bePhone"  placeholder="必填,请输入电话号码"></x-input>
       <x-input title="品牌型号" ref="carname" label-width="3rem" required v-model="carname" placeholder="必填,如本田飞度"></x-input>
       <x-input title="车牌号" ref="carId" label-width="3rem" :min="7" :max="7" required v-model="carId" :is-type="beCarId"  placeholder="必填,这输入车牌号"></x-input>
-      <x-input title="车辆识别代码" ref="carNumber" label-width="3rem" required v-model="carNumber" :min="6" :max="6" :is-type="beCarNumber" placeholder="必填,请输入后6位"></x-input>
-      <x-input title="发动机号" ref="engineNumber" label-width="3rem" required v-model="engineNumber" :min="4" :max="4" :is-type="beEngineNumber" placeholder="必填,发动机号码后4位"></x-input>
+      <datetime ref="startDate" v-model="startDate" format="YYYY-MM-DD" title="指标有效期开始时间"></datetime>
+
+      <datetime ref="endDate" v-model="endDate" format="YYYY-MM-DD" title="指标有效期结束时间"></datetime>
       <x-input title="备注" ref="mark" label-width="3rem" v-model="mark" :max="100" placeholder="特殊情况请备注"></x-input>
     </group>
     <div class="function-box">
@@ -49,7 +50,7 @@
 </template>
 
 <script>
-  import { Divider, TransferDom, Group, XInput, XButton, Toast, XHeader, Popup, Cell } from 'vux'
+  import { Divider, TransferDom, Group, XInput, XButton, Toast, XHeader, Popup, Cell, Datetime } from 'vux'
   import { checkCarId, checkPhone, checkCarNumber, checkEngineNumber } from '@/utils/validateTool'
   import { booking } from '@/service'
 
@@ -66,7 +67,8 @@
       Toast,
       XHeader,
       Popup,
-      Cell
+      Cell,
+      Datetime
     },
     props: {
       selectedDate: {
@@ -89,7 +91,9 @@
         engineNumber: '',
         showNotice: false,
         isRead: false,
-        mark: ''
+        mark: '',
+        startDate: '',
+        endDate: ''
       }
     },
     methods: {
@@ -139,7 +143,8 @@
             mark: this.mark,
             engineNumber: this.engineNumber,
             createTime: new Date().getTime(),
-            createBy: localStorage.getItem('phone')
+            createBy: localStorage.getItem('phone'),
+            validDate: this.startDate + '～' + this.endDate
           }
 
           booking(bookingReq)
@@ -163,8 +168,8 @@
           return false
         }
 
-        if (this.carname && this.carId.length > 2 && this.contactName && this.contactPhone && this.carNumber && this.engineNumber) {
-          if (this.$refs.carname.valid && this.$refs.carId.valid && this.$refs.contactName.valid && this.$refs.contactPhone.valid && this.$refs.carNumber.valid && this.$refs.engineNumber.valid) {
+        if (this.carname && this.carId.length > 2 && this.contactName && this.contactPhone && this.startDate && this.endDate) {
+          if (this.$refs.carname.valid && this.$refs.carId.valid && this.$refs.contactName.valid && this.$refs.contactPhone.valid) {
             return true
           }
           this.showToast = true
