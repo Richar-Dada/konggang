@@ -6,6 +6,7 @@
           <th>业务类型</th>
           <th>车牌号</th>
           <th>预约时间</th>
+          <th>状态</th>
           <th>操作</th>
         </tr>
       </thead>
@@ -13,7 +14,8 @@
         <tr v-for="(order, index) in orderList" :key="index">
           <td>{{ order.serviceType }}</td>
           <td>{{ order.carId }}</td>
-          <td>{{ order.bookingDate + ' ' + order.bookingTime }}</td>
+          <td>{{ order.bookingDate.split('年')[1] + ' ' + order.bookingTime }}</td>
+          <td>{{ couvertText(order.sendMsg) }}</td>
           <td><x-button mini type="primary" @click.native="deleteOrder(order.id)">删除</x-button></td>
         </tr>
         <tr v-if="noResult">
@@ -61,6 +63,15 @@
       }
     },
     methods: {
+      couvertText (text) {
+        if (text.indexOf('成功') > -1) {
+          return '预约成功'
+        } else if (text.indexOf('失败') > -1) {
+          return '预约失败'
+        } else {
+          return '未审核'
+        }
+      },
       onHide () {
         console.log('on hide')
       },
