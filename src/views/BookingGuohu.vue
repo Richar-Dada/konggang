@@ -19,30 +19,36 @@
     <toast v-model="showToast" width="6rem" type="text">{{toastMsg}}</toast>
     <div v-transfer-dom>
       <popup v-model="showNotice" position="bottom">
-        <group>
-          <cell value-align="left">1.	空港登记服务只接受办理9座（含9座）以下使用性质为小型客车的国产或合资车辆，无法办理使用性质为中型客车、大型客车、货车和进口车等其他车辆。</cell>
-          <cell value-align="left">2.	车辆行驶证<span style="color:red">（年审需要有10个工作日的有效期）</span></cell>
-          <cell value-align="left">3.	车辆登记证<span style="color:red">（身份证明信息需和证件一致，需要升位或三证合一的请到分所办理）</span></cell>
-          <cell value-align="left">4.	原车主身份证原件<span style="color:red">（证件需要有5个工作日有效期）</span></cell>
-          <cell value-align="left">5.	原车主身份证复印件<span style="color:red">（复印件签名、日期、手机号码）</span></cell>
-          <cell value-align="left">6.	新车主身份证原件<span style="color:red">（证件需要有5个工作日有效期）</span></cell>
-          <cell value-align="left">7.	新车主身份证复印件<span style="color:red">（复印件签名、日期、手机号码）</span></cell>
-          <cell value-align="left">8.	指标书<span style="color:red">（需要有3个工作日有效期）</span></cell>
-          <cell value-align="left">9.	非广州户口需要居住证原件<span style="color:red">（证件信息清晰、完整且需要有5个工作日有效期）</span></cell>
-          <cell value-align="left">10.	非广州户口需要居住证复印件<span style="color:red">（复印件签名、日期、手机号码）</span></cell>
-          <cell value-align="left">11.	若原车主或新车主是单位/公司，需要提供：
-                    ①	营业执照原件<span style="color:red">（证件需要有5个工作日有效期）</span>
-                    ②	营业执照复印件<span style="color:red">（复印件需盖单位公章）</span>
-                    ③	委托书<span style="color:red">（需盖单位公章及委托时间在有效期内）</span>
-                    ④	被委托人身份证原件<span style="color:red">（证件需要有5个工作日有效期）</span>
-                    ⑤	被委托人身份证复印件<span style="color:red">（复印件签名、日期、手机号码）</span>
-          </cell>
-          <cell value-align="left">12.	业务办理声明（前台领用，填写区有模板）</cell>
-          <cell value-align="left">13.	机动车业务告知书（前台领用，填写区有模板）</cell>
-          <cell value-align="left">14.	若新车主需要保留指标书上的车牌号码，需要填写<span style="color:red">机动车注册登记使用原号牌号码申请表</span>（前台领用，填写区有模板）</cell>
-        </group>
+        <div class="notice-list">
+          <h3 class="notice-title">受理范围：</h3>
+          <p>9座以下（含9座）使用性质为小型客车的国产或合资车辆可办理市内过户和迁出提档业务。进口小型客车和轻型、微型货车可办理市内过户业务。</p>
+          <p class="color">PS：预约货车业务指标有限期可随意选择</p>
+          <p class="mt10">使用性质为非营运、营转非、出租转非、预约出租转非的小型客车可办理市内内过户和迁出提档业务，使用性质为非营运、营转非、货运的轻型、微型货车可办理市内过户业务。</p>
+          <p class="color">PS：办理业务过程不能改变车辆的使用性质</p>
+          <p class="mt10">办理车辆的所有人身份证证明号码必须为与原车主证件号码一致，站点无法办理变更业务，不符合的需要先到分所办理变更手续后两个工作日再预约本站。</p>
+          <p class="mt10">预约本站迁出业务，请在上一宗车管业务（过户、变更、补证、解押）办结后20天再预约。</p>
+          <p class="color">PS：市内过户业务不受此影响</p>
+
+          <h3 class="notice-title mt10">预约时间：</h3>
+          <p>当天15:00前可预约次工作日的市内过户业务。</p>
+          <p>当天10:00前可预约3个工作日后的迁出提档业务。</p>
+
+          <h3 class="notice-title mt10">所需资料：</h3>
+          <p>1.车辆行驶证<span class="color">（市内过户：年审当月有效；迁出提档：年审有效期到次月）</span></p>
+          <p>2.车辆登记证<span class="color">（身份证明信息需和证件一致，需要升位或三证合一的请先到分所办理）</span></p>
+          <p>3. 新车主身份证原件和复印件<span class="color">（证件需要有5个工作日有效期）</span> </p>
+          <p>4.指标书<span class="color">（需要有3个工作日有效期，迁入地没有限号标准则不需提供）</span></p>
+          <p>5.非迁入地户口需要居住证原件和复印件<span class="color">（一个月以上有效期；证件信息模糊需提供居住信息表）</span></p>
+          <p>6.若新车主是单位/公司，需要提供：</p>
+          <p class="pl10">①营业执照原件<span class="color">（证件需要有1个月以上有效期）</span></p>
+          <p class="pl10">②营业执照复印件<span class="color">（复印件需盖单位公章）</span></p>
+          <p class="pl10">③委托书<span class="color">（需盖单位公章及委托时间在有效期内）</span></p>
+          <p class="pl10">④被委托人身份证原件和复印件<span class="color">（证件需要有5个工作日有效期）</span></p>
+          <p>7.若原车主是单位/公司需要提供业务委托书<span class="color">（盖公章）</span>和<span class="color">增值税发票</span>。</p>
+        </div>
+        
         <div style="padding: 15px;">
-          <x-button @click.native="showNotice = false" type="primary"> 关 闭 </x-button>
+          <x-button @click.native="showNotice = false" type="primary"> 知晓并关闭 </x-button>
         </div>
       </popup>
     </div>
@@ -89,8 +95,8 @@
         contactPhone: '',
         carNumber: '',
         engineNumber: '',
-        showNotice: false,
-        isRead: false,
+        showNotice: true,
+        isRead: true,
         mark: '',
         startDate: '',
         endDate: ''
@@ -225,5 +231,21 @@
   }
   .divider-text{
     font-size: 12px;
+  }
+  .notice-list{
+    padding: 10px 20px;
+  }
+  .notice-title{
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .color{
+    color: red;
+  }
+  .pl10{
+    padding-left: 10px;
+  }
+  .mt10{
+    margin-top: 10px;
   }
 </style>
