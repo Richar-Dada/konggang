@@ -50,6 +50,7 @@ export function getSchedulDateGuohu () {
         flag = true
       }
     } else if (m === 4 || m === 6 || m === 9 || m === 11) {
+      if (date === 1) { date = 2 }
       m = m + Math.floor((date / 31))
       if (date === 31) {
         date = 1
@@ -106,6 +107,7 @@ export function getSchedulDateQianchu () {
         flag = true
       }
     } else if (m === 4 || m === 6 || m === 9 || m === 11) {
+      if (date === 1) { date = 2 }
       m = m + Math.floor((date / 31))
       if (date === 31) {
         date = 1
@@ -131,5 +133,6 @@ export function getSchedulDateQianchu () {
       i++
     }
   }
+  console.log(result)
   return result
 }
