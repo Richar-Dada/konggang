@@ -7,7 +7,7 @@ const holiday = [
   '9月1日', '9月2日', '9月8日', '9月9日', '9月15日', '9月16日', '9月22日', '9月23日', '9月24日',
   '10月1日', '10月2日', '10月3日', '10月4日', '10月5日', '10月6日', '10月7日', '10月13日', '10月14日', '10月20日', '10月21日', '10月27日', '10月28日',
   '11月3日', '11月4日', '11月10日', '11月11日', '11月17日', '11月18日', '11月24日', '11月25日',
-  '12月1日', '12月2日', '12月8日', '12月9日', '12月15日', '12月16日', '12月22日', '12月23日', '12月29日', '12月30日'
+  '12月1日', '12月2日', '12月8日', '12月9日', '12月15日', '12月16日', '12月22日', '12月23日', '12月30日', '12月31日', '1月1日'
 ]
 
 const qianchuholiday = [
@@ -19,7 +19,7 @@ const qianchuholiday = [
   '9月1日', '9月2日', '9月8日', '9月9日', '9月15日', '9月16日', '9月22日', '9月23日', '9月24日',
   '10月1日', '10月2日', '10月3日', '10月4日', '10月5日', '10月6日', '10月7日', '10月13日', '10月14日', '10月20日', '10月21日', '10月27日', '10月28日',
   '11月3日', '11月4日', '11月10日', '11月11日', '11月17日', '11月18日', '11月24日', '11月25日',
-  '12月1日', '12月2日', '12月8日', '12月9日', '12月15日', '12月16日', '12月22日', '12月23日', '12月29日', '12月30日'
+  '12月1日', '12月2日', '12月8日', '12月9日', '12月15日', '12月16日', '12月22日', '12月23日', '12月30日', '12月31日', '1月1日'
 ]
 
 export function getSchedulDateGuohu () {
@@ -39,12 +39,14 @@ export function getSchedulDateGuohu () {
 
     if (year % 4 === 0 && m === 2) {
       m = m + Math.floor((date / 29))
+      if (m >= 13) { m = 1 }
       if (date === 29) {
         date = 1
         flag = true
       }
     } else if (year % 4 !== 0 && m === 2) {
       m = m + Math.floor((date / 30))
+      if (m >= 13) { m = 1 }
       if (date === 30) {
         date = 1
         flag = true
@@ -52,6 +54,7 @@ export function getSchedulDateGuohu () {
     } else if (m === 4 || m === 6 || m === 9 || m === 11) {
       if (date === 1) { date = 2 }
       m = m + Math.floor((date / 31))
+      if (m >= 13) { m = 1 }
       if (date === 31) {
         date = 1
         flag = true
@@ -59,6 +62,7 @@ export function getSchedulDateGuohu () {
     } else {
       if (date === 1) { date = 2 }
       m = m + Math.floor((date / 32))
+      if (m >= 13) { m = 1 }
       if (date === 32) {
         date = 1
         flag = true
@@ -96,12 +100,14 @@ export function getSchedulDateQianchu () {
 
     if (year % 4 === 0 && m === 2) {
       m = m + Math.floor((date / 29))
+      if (m >= 13) { m = 1 }
       if (date === 29) {
         date = 1
         flag = true
       }
     } else if (year % 4 !== 0 && m === 2) {
       m = m + Math.floor((date / 30))
+      if (m >= 13) { m = 1 }
       if (date === 30) {
         date = 1
         flag = true
@@ -109,6 +115,7 @@ export function getSchedulDateQianchu () {
     } else if (m === 4 || m === 6 || m === 9 || m === 11) {
       if (date === 1) { date = 2 }
       m = m + Math.floor((date / 31))
+      if (m >= 13) { m = 1 }
       if (date === 31) {
         date = 1
         flag = true
@@ -116,6 +123,7 @@ export function getSchedulDateQianchu () {
     } else {
       if (date === 1) { date = 2 }
       m = m + Math.floor((date / 32))
+      if (m >= 13) { m = 1 }
       if (date === 32) {
         date = 1
         flag = true
