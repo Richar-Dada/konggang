@@ -6,7 +6,7 @@
       <x-input title="业务联系人" ref="contactName" label-width="3rem" required v-model="contactName"  placeholder="必填,请输入姓名"></x-input>
       <x-input title="业务联系电话" ref="contactPhone" label-width="3rem" required v-model="contactPhone" :is-type="bePhone" :min="11" :max="11"  placeholder="必填,请输入电话号码"></x-input>
       <x-input title="品牌型号" ref="carname" label-width="3rem" required v-model="carname" placeholder="必填,如:本田飞度"></x-input>
-      <x-input title="车牌号" ref="carId" label-width="3rem" required  :min="8" :max="8" v-model="carId" :is-type="beCarId" placeholder="必填,这输入车牌号"></x-input>
+      <x-input title="车牌号" ref="carId" label-width="3rem" required  :min="7" :max="8" v-model="carId" :is-type="beCarId" placeholder="必填,这输入车牌号"></x-input>
       <x-input title="发动机号" ref="engineNumber" label-width="3rem" required v-model="engineNumber" :min="4" :max="4" :is-type="beEngineNumber" placeholder="必填,发动机号码后4位"></x-input>
       <x-input title="原车主姓名" ref="oldCarOwner" label-width="3rem" required v-model="oldCarOwner" placeholder="必填"></x-input>
       <x-input title="新车主姓名" ref="newCarOwner" label-width="3rem" required v-model="newCarOwner" placeholder="必填"></x-input>
