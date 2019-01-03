@@ -45,7 +45,7 @@ export function getSchedulDateGuohu () {
 
     if (year % 4 === 0 && m === 2) {
       m = m + Math.floor((date / 29))
-      if (m >= 13) { m = 1 }
+      if (m >= 13) { m = 1; year += 1 }
       if (date === 1) { date = 2 }
       if (date === 29) {
         date = 1
@@ -53,7 +53,7 @@ export function getSchedulDateGuohu () {
       }
     } else if (year % 4 !== 0 && m === 2) {
       m = m + Math.floor((date / 30))
-      if (m >= 13) { m = 1 }
+      if (m >= 13) { m = 1; year += 1 }
       if (date === 1) { date = 2 }
       if (date === 30) {
         date = 1
@@ -62,7 +62,7 @@ export function getSchedulDateGuohu () {
     } else if (m === 4 || m === 6 || m === 9 || m === 11) {
       if (date === 1) { date = 2 }
       m = m + Math.floor((date / 31))
-      if (m >= 13) { m = 1 }
+      if (m >= 13) { m = 1; year += 1 }
       if (date === 31) {
         date = 1
         flag = true
@@ -71,7 +71,7 @@ export function getSchedulDateGuohu () {
       // 12月 1月
       if (date === 1) { date = 2 }
       m = m + Math.floor((date / 32))
-      if (m >= 13) { m = 1 }
+      if (m >= 13) { m = 1; year += 1 }
       if (date === 32) {
         date = 1
         flag = true
@@ -87,8 +87,8 @@ export function getSchedulDateGuohu () {
       result.push(tem)
       i++
     }
-    console.log(dateStr)
   }
+  console.log(result)
   return result
 }
 
@@ -110,7 +110,7 @@ export function getSchedulDateQianchu () {
 
     if (year % 4 === 0 && m === 2) {
       m = m + Math.floor((date / 29))
-      if (m >= 13) { m = 1 }
+      if (m >= 13) { m = 1; year += 1 }
       if (date === 1) { date = 2 }
       if (date === 29) {
         date = 1
@@ -118,7 +118,7 @@ export function getSchedulDateQianchu () {
       }
     } else if (year % 4 !== 0 && m === 2) {
       m = m + Math.floor((date / 30))
-      if (m >= 13) { m = 1 }
+      if (m >= 13) { m = 1; year += 1 }
       if (date === 1) { date = 2 }
       if (date === 30) {
         date = 1
@@ -127,7 +127,7 @@ export function getSchedulDateQianchu () {
     } else if (m === 4 || m === 6 || m === 9 || m === 11) {
       if (date === 1) { date = 2 }
       m = m + Math.floor((date / 31))
-      if (m >= 13) { m = 1 }
+      if (m >= 13) { m = 1; year += 1 }
       if (date === 31) {
         date = 1
         flag = true
@@ -135,7 +135,7 @@ export function getSchedulDateQianchu () {
     } else {
       if (date === 1) { date = 2 }
       m = m + Math.floor((date / 32))
-      if (m >= 13) { m = 1 }
+      if (m >= 13) { m = 1; year += 1 }
       if (date === 32) {
         date = 1
         flag = true
@@ -143,7 +143,6 @@ export function getSchedulDateQianchu () {
     }
 
     let dateStr = m + '月' + date + '日'
-    console.log(dateStr)
     if (qianchuholiday.indexOf(dateStr) === -1) {
       var tem = {
         date: dateStr,

@@ -6,7 +6,7 @@
       <x-input title="业务联系人" ref="contactName" label-width="3rem" required v-model="contactName"  placeholder="必填,请输入姓名"></x-input>
       <x-input title="业务联系电话" ref="contactPhone" label-width="3rem" required v-model="contactPhone" :max="11" :is-type="bePhone"  placeholder="必填,请输入电话号码"></x-input>
       <x-input title="品牌型号" ref="carname" label-width="3rem" required v-model="carname" placeholder="必填,如本田飞度"></x-input>
-      <x-input title="车牌号" ref="carId" label-width="3rem" :min="7" :max="7" required v-model="carId" :is-type="beCarId"  placeholder="必填,这输入车牌号"></x-input>
+      <x-input title="车牌号" ref="carId" label-width="3rem" :min="8" :max="8" required v-model="carId" :is-type="beCarId"  placeholder="必填,这输入车牌号"></x-input>
       <datetime ref="startDate" v-model="startDate" format="YYYY-MM-DD" title="指标有效期开始时间"></datetime>
 
       <datetime ref="endDate" v-model="endDate" format="YYYY-MM-DD" title="指标有效期结束时间"></datetime>
@@ -194,6 +194,7 @@
       }
 
       const selectedDateArr = decodeURI(this.selectedDate).split('-')
+      console.log(selectedDateArr)
       this.bookingDate = selectedDateArr[0]
       this.bookingTime = selectedDateArr[1]
     }
