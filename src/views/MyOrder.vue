@@ -19,7 +19,7 @@
           <td><x-button mini type="primary" @click.native="deleteOrder(order.id)">删除</x-button></td>
         </tr>
         <tr v-if="noResult">
-          <td colspan="4">没有记录</td>
+          <td colspan="5">没有记录</td>
         </tr>
       </tbody>
     </x-table>
