@@ -52,10 +52,10 @@ export function getSchedulDateGuohu () {
         flag = true
       }
     } else if (year % 4 !== 0 && m === 2) {
-      m = m + Math.floor((date / 30))
+      m = m + Math.floor((date / 29))
       if (m >= 13) { m = 1; year += 1 }
       if (date === 1) { date = 2 }
-      if (date === 30) {
+      if (date === 29) {
         date = 1
         flag = true
       }
@@ -117,10 +117,10 @@ export function getSchedulDateQianchu () {
         flag = true
       }
     } else if (year % 4 !== 0 && m === 2) {
-      m = m + Math.floor((date / 30))
+      m = m + Math.floor((date / 29))
       if (m >= 13) { m = 1; year += 1 }
       if (date === 1) { date = 2 }
-      if (date === 30) {
+      if (date === 29) {
         date = 1
         flag = true
       }
