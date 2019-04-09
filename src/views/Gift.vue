@@ -2,52 +2,63 @@
   <div class="gift">
     <div class="container">
       <div class="content">
-        <p>热舞欧日乌尔哦二二五二二位</p>
-        <p>热舞欧日乌尔哦二二五二二位</p>
-        <p>热舞欧日乌尔哦二二五二二位</p>
-        <p>热舞欧日乌尔哦二二五二二位</p>
-        <p>热舞欧日乌尔哦二二五二二位</p>
-        <p>热舞欧日乌尔哦二二五二二位</p>
-        <p>热舞欧日乌尔哦二二五二二位</p>
+        <p>佛说，前世的五百次回眸，才换来今生的擦肩而过。</p>
+        <p>金子山邂逅，初识小仙女，正值开年之初。</p>
+        <p>时至今日，相识日子刚好过百，甚是庆幸。</p>
+        <p>回想过往，想聊甚欢！</p>
+        <p>双方爱吃，话题总有，又因半个同乡，吃喝玩乐总想到一块，又有一同觅食的经历，我乐在其中！！</p>
+        <p>那一世</p>
+        <p>转山转水转佛塔</p>
+        <p>遇见过世界</p>
+        <p>方可遇见你</p>
+        <p>佛又说，五百年前，</p>
+        <p>我决定上山，</p>
+        <p>用整整一天的时间专心致志想你，</p>
+        <p>下山后全部忘掉。</p>
+        <p>于是，我看猪的时候想你，</p>
+        <p>看树的时候想你，</p>
+        <p>看电脑的时候想你，</p>
+        <p>忘下山的时候脑海还有你</p>
+        <p>走过下个百日！</p>
       </div>
     </div>
     
     <div class="photo-list">
       <div class="photo-list-item">
         <div class="item-title">
-          <h3>风的女儿</h3>
-          <p>這本所敘述之故事以兩個女孩的成長為主軸,訴說著回教徒女孩在男性文化制度下</p>
+          <h3>小仙女</h3>
+          <p>超级无敌可爱小仙女，满屏都是青春的气息</p>
         </div>
         <div class="item-content">
-          <img src="/static/s6394521.jpg" alt="">
+          <img src="/static/xuesheng.jpg" alt="">
         </div>
       </div>
       <div class="photo-list-item">
         <div class="item-content">
-          <img src="/static/s6394521.jpg" alt="">
+          <img src="/static/hai.jpg" alt="">
         </div>
         <div class="item-title">
-          <h3>风的女儿</h3>
-          <p>這本所敘述之故事以兩個女孩的成長為主軸,訴說著回教徒女孩在男性文化制度下</p>
+          <h3>海的女儿</h3>
+          <p>吹着清凉的海风，踩着柔软都沙滩，尽显自己的风情万种</p>
         </div>
        
       </div>
       <div class="photo-list-item">
         <div class="item-title">
-          <h3>风的女儿</h3>
-          <p>這本所敘述之故事以兩個女孩的成長為主軸,訴說著回教徒女孩在男性文化制度下,沒有「屈服」可言。但書中女主角─莎芭努在成長</p>
-        </div>
-        <div class="item-content">
-          <img src="/static/s6394521.jpg" alt="">
+          <div class="item-content">
+            <img src="/static/nvwang.jpg" alt="">
+          </div>
+          <h3 style="margin-top: 20px;">女王大人</h3>
+          <p>欲戴皇冠，必承其重，</p>
         </div>
       </div>
       <div class="photo-list-item">
         <div class="item-title">
-          <h3>风的女儿</h3>
-          <p>這本所敘述之故事以兩個女孩的成長為主軸,訴說著回教徒女孩在男性文化制度下,沒有「屈服」可言。但書中女主角─莎芭努在成長</p>
+          <h3>谜之女人</h3>
+          <p>没错！即使这样，她依然美如画～</p>
         </div>
         <div class="item-content">
-          <img src="/static/s6394521.jpg" alt="">
+          <img src="/static/mianmo.jpg" alt="">
         </div>
       </div>
     </div>
@@ -58,10 +69,19 @@
     </div>
 
     <div class="modal" v-if="showModal">
+      <div class="top">
+        <div class="item">猪</div>
+        <div class="item">猪</div>
+        <div class="item">女</div>
+      </div>
       <div class="button" @click="closeModal">
         <div class="button-item">
         </div>
         <div class="button-item-modal"></div>
+      </div>
+      <div class="bottom">
+        <div class="item">亲</div>
+        <div class="item">启</div>
       </div>
     </div>
     
@@ -94,15 +114,20 @@
 
 <style scoped lang="less">
 .container{
-  height: 300px;
+  height: 600px;
   background-color: red;
   overflow: hidden;
+  background-image: url("/static/bg.jpg");
+  background-size: cover;
   .content{
-    width: 300px;
-    margin: 20px auto;
+    text-align: center;
+    width: 330px;
+    margin: 80px auto 20px auto;
     padding: 10px;
-    background-color: rgba(0, 0, 0, .5);
     font-size: 14px;
+    p{
+      line-height: 26px;
+    }
   }
 }
 
@@ -167,18 +192,44 @@
   height: 100%;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, .87);
+  background-color: rgba(0, 0, 0, .9);
+
+  .top{
+    width: 50px;
+    height: 150px;
+    margin: 50px auto 30px auto;
+    .item{
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+      font-size: 24px;
+      color: #dd817b; 
+    }
+  }
+
+  .bottom{
+    width: 50px;
+    height: 150px;
+    margin: 50px auto 20px auto;
+    .item{
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+      font-size: 24px;
+      color: #dd817b; 
+    }
+  }
 
   .button{
     width: 160px;
     height: 160px;
     text-align: center;
     line-height: 160px;
-    position: absolute;
     border-radius: 50%;
     left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     background-color: white;
     position: relative;
     box-shadow: 0px 0px 10px red;
@@ -190,8 +241,10 @@
       border-radius: 50%;
       display: inline-block;
       text-align: center;
-      background-image: url("/static/s6394521.jpg");
+      background-image: url("/static/zhuzhunv.jpg");
+      background-size: cover;
       font-size: 30px;
+      margin-top: 5px;
       animation-name: rotation;
       animation-duration: 10000ms;
       animation-iteration-count: infinite; /*无限循环*/
