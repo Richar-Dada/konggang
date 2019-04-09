@@ -49,7 +49,7 @@
             <img src="/static/nvwang.jpg" alt="">
           </div>
           <h3 style="margin-top: 20px;">女王大人</h3>
-          <p>欲戴皇冠，必承其重，</p>
+          <p>欲戴皇冠，必承其重，霸气女总裁已上线</p>
         </div>
       </div>
       <div class="photo-list-item">
@@ -165,6 +165,7 @@
     border: 1px solid #ccc;
     position: relative;
     img{
+      width: 88%;
       position: absolute;
       top: 10px;
       left: 10px;
