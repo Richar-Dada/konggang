@@ -7,9 +7,19 @@
       <x-input title="业务联系电话" ref="contactPhone" label-width="3rem" required v-model="contactPhone" :max="11" :is-type="bePhone"  placeholder="必填,请输入电话号码"></x-input>
       <x-input title="品牌型号" ref="carname" label-width="3rem" required v-model="carname" placeholder="必填,如本田飞度"></x-input>
       <x-input title="车牌号" ref="carId" label-width="3rem" :min="7" :max="8" required v-model="carId" :is-type="beCarId"  placeholder="必填,这输入车牌号"></x-input>
-      <datetime ref="startDate" v-model="startDate" format="YYYY-MM-DD" title="指标有效期开始时间"></datetime>
-
-      <datetime ref="endDate" v-model="endDate" format="YYYY-MM-DD" title="指标有效期结束时间"></datetime>
+      <div class="car-type">
+        <div class="car-type-label">汽车类型</div>
+        <checker
+        v-model="carType"
+        default-item-class="car-type-item"
+        selected-item-class="car-type-item-selected"
+        >
+          <checker-item v-for="(item, index) in carTypeList" :key="index" :value="item.value">{{ item.name }}</checker-item>
+        </checker>
+      </div>
+      
+      <datetime v-if="carType == 'car'" ref="startDate" v-model="startDate" format="YYYY-MM-DD" title="指标有效期开始时间"></datetime>
+      <datetime v-if="carType == 'car'" ref="endDate" v-model="endDate" format="YYYY-MM-DD" title="指标有效期结束时间"></datetime>
       <x-input title="备注" ref="mark" label-width="3rem" v-model="mark" :max="100" placeholder="特殊情况请备注"></x-input>
     </group>
     <div class="function-box">
@@ -56,7 +66,7 @@
 </template>
 
 <script>
-  import { Divider, TransferDom, Group, XInput, XButton, Toast, XHeader, Popup, Cell, Datetime } from 'vux'
+  import { Divider, TransferDom, Group, XInput, XButton, Toast, XHeader, Popup, Cell, Datetime, Checker, CheckerItem } from 'vux'
   import { checkCarId, checkPhone, checkCarNumber, checkEngineNumber } from '@/utils/validateTool'
   import { booking } from '@/service'
 
@@ -74,7 +84,9 @@
       XHeader,
       Popup,
       Cell,
-      Datetime
+      Datetime,
+      Checker,
+      CheckerItem
     },
     props: {
       selectedDate: {
@@ -99,7 +111,12 @@
         isRead: true,
         mark: '',
         startDate: '',
-        endDate: ''
+        endDate: '',
+        carType: 'car',
+        carTypeList: [
+          { name: '小型客车', value: 'car' },
+          { name: '轻微型货车', value: 'van' }
+        ]
       }
     },
     methods: {
@@ -146,11 +163,12 @@
             carNumber: this.carNumber,
             carname: this.carname,
             carId: this.carId,
+            carType: this.carType,
             mark: this.mark,
             engineNumber: this.engineNumber,
             createTime: new Date().getTime(),
             createBy: localStorage.getItem('phone'),
-            validDate: this.startDate + '～' + this.endDate
+            validDate: this.carType === 'car' ? this.startDate + '～' + this.endDate : '--'
           }
 
           booking(bookingReq)
@@ -249,4 +267,35 @@
   .mt10{
     margin-top: 10px;
   }
+  .car-type{
+    margin-left: 20px;
+    height: 40px;
+    width: 730px;
+    display: flex;
+    align-content: center;
+    line-height: 40px;
+  }
+  .car-type-label {
+  text-align: center;
+  border-radius: 3px;
+  
+  margin-right: 6px;
+}
+.car-type-item{
+  height: 26px;
+  line-height: 26px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius: 5px;
+  margin-left: 10px;
+  padding: 0 5px;
+}
+.car-type-item-selected {
+  //background: #ffffff url(../assets/demo/checker/active.png) no-repeat right bottom;
+  border-color: #ff4a00;
+  
+}
+.car-type{
+  border-top: 1px solid #D9D9D9;
+}
 </style>
