@@ -192,17 +192,32 @@
           return false
         }
 
-        if (this.carname && this.carId.length > 2 && this.contactName && this.contactPhone && this.startDate && this.endDate) {
-          if (this.$refs.carname.valid && this.$refs.carId.valid && this.$refs.contactName.valid && this.$refs.contactPhone.valid) {
-            return true
+        if (this.carType === 'car') {
+          if (this.carname && this.carId.length > 2 && this.contactName && this.contactPhone && this.startDate && this.endDate) {
+            if (this.$refs.carname.valid && this.$refs.carId.valid && this.$refs.contactName.valid && this.$refs.contactPhone.valid) {
+              return true
+            }
+            this.showToast = true
+            this.toastMsg = '请按规则填写信息'
+            return false
+          } else {
+            this.showToast = true
+            this.toastMsg = '请把信息填写完整'
+            return false
           }
-          this.showToast = true
-          this.toastMsg = '请按规则填写信息'
-          return false
         } else {
-          this.showToast = true
-          this.toastMsg = '请把信息填写完整'
-          return false
+          if (this.carname && this.carId.length > 2 && this.contactName && this.contactPhone) {
+            if (this.$refs.carname.valid && this.$refs.carId.valid && this.$refs.contactName.valid && this.$refs.contactPhone.valid) {
+              return true
+            }
+            this.showToast = true
+            this.toastMsg = '请按规则填写信息'
+            return false
+          } else {
+            this.showToast = true
+            this.toastMsg = '请把信息填写完整'
+            return false
+          }
         }
       }
     },
