@@ -112,7 +112,7 @@
         mark: '',
         startDate: '',
         endDate: '',
-        carType: 'car',
+        carType: '',
         carTypeList: [
           { name: '小型客车', value: 'car' },
           { name: '轻微型货车', value: 'van' }
@@ -192,7 +192,11 @@
           return false
         }
 
-        if (this.carType === 'car') {
+        if (this.carType === '') {
+          this.showToast = true
+          this.toastMsg = '请选择汽车类型'
+          return false
+        } else if (this.carType === 'car') {
           if (this.carname && this.carId.length > 2 && this.contactName && this.contactPhone && this.startDate && this.endDate) {
             if (this.$refs.carname.valid && this.$refs.carId.valid && this.$refs.contactName.valid && this.$refs.contactPhone.valid) {
               return true
@@ -299,7 +303,7 @@
 .car-type-item{
   height: 26px;
   line-height: 26px;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   background-color: #fff;
   border-radius: 5px;
   margin-left: 10px;
