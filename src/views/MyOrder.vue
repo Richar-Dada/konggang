@@ -64,7 +64,7 @@
     },
     methods: {
       couvertText (text) {
-        if (text.indexOf('成功') > -1) {
+        if (text.indexOf('成功') > -1 || text.indexOf('后台添加') > -1) {
           return '预约成功'
         } else if (text.indexOf('失败') > -1) {
           return '预约失败'
