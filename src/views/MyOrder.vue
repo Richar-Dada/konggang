@@ -15,7 +15,7 @@
           <td>{{ order.serviceType }}</td>
           <td>{{ order.carId }}</td>
           <td>{{ order.bookingDate.split('年')[1] + ' ' + order.bookingTime }}</td>
-          <td>{{ couvertText(order.sendMsg) }}</td>
+          <td>{{ couvertText(order.status, order.sendMsg) }}</td>
           <td><x-button mini type="primary" @click.native="deleteOrder(order.id)">删除</x-button></td>
         </tr>
         <tr v-if="noResult">
@@ -33,12 +33,23 @@
       @on-hide="onHide">
         <p style="text-align:center;">确定删除？</p>
       </confirm>
+      
+      <x-dialog 
+        v-model="showDialog"
+      >
+        <p class="dialog-text1">预约成功不能自行取消，需要通过微信或电话联系工作人员进行取消</p>
+        <p class="dialog-text2">电话号码：18928930072</p>
+        <img class="dialog-img" src="/static/kg_gzh.jpg" alt="">
+        <div @click="showDialog=false">
+          <span class="dialog-close">关闭</span>
+        </div>
+      </x-dialog>
     </div>
   </div>
 </template>
 
 <script>
-  import { Confirm, XTable, XButton, Toast, TransferDomDirective as TransferDom } from 'vux'
+  import { Confirm, XTable, XButton, XDialog, Toast, TransferDomDirective as TransferDom } from 'vux'
   import { getBooking, deleteBooking } from '@/service'
 
   export default {
@@ -50,7 +61,8 @@
       XTable,
       XButton,
       Toast,
-      Confirm
+      Confirm,
+      XDialog
     },
     data () {
       return {
@@ -58,12 +70,25 @@
         noResult: false,
         errorMsg: '',
         showToast: false,
+        showDialog: false,
         showConfirm: false,
         id: ''
       }
     },
     methods: {
-      couvertText (text) {
+      couvertText (status, text) {
+        if (status === '确认完成') {
+          return '确认完成'
+        }
+
+        if (status === '记账完成') {
+          return '记账完成'
+        }
+
+        if (status === '现金完成') {
+          return '现金完成'
+        }
+
         if (text.indexOf('成功') > -1 || text.indexOf('后台添加') > -1) {
           return '预约成功'
         } else if (text.indexOf('失败') > -1) {
@@ -89,6 +114,11 @@
       onConfirm () {
         deleteBooking(this.id)
           .then((res) => {
+            if (res.data.resultCode === 430) {
+              this.showDialog = true
+              return
+            }
+
             this.showToast = true
             if (res.data.resultCode === 200) {
               this.errorMsg = res.data.successMsg
@@ -121,5 +151,32 @@
 <style scoped>
 .my-order{
   padding-bottom: 60px;
+}
+
+.dialog-text1{
+  font-size: 14px;
+  margin-top: 5px;
+  padding: 0 20px;
+}
+
+.dialog-text2{
+  font-size: 14px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.dialog-img{
+  width: 100%;
+}
+
+.dialog-close{
+  display: inline-block;
+  width: 60px;
+  height: 28px;
+  line-height: 28px;
+  border-radius: 2px;
+  background-color: #cccccc;
+  margin-top: -10px;
+  margin-bottom: 10px;
 }
 </style>
