@@ -7,6 +7,16 @@
       <x-input title="业务联系电话" ref="contactPhone" label-width="3rem" required v-model="contactPhone" :is-type="bePhone" :min="11" :max="11"  placeholder="必填,请输入电话号码"></x-input>
       <x-input title="品牌型号" ref="carname" label-width="3rem" required v-model="carname" placeholder="必填,如:本田飞度"></x-input>
       <x-input title="车牌号" ref="carId" label-width="3rem" required  :min="7" :max="8" v-model="carId" :is-type="beCarId" placeholder="必填,这输入车牌号"></x-input>
+      <div class="car-type">
+        <div class="car-type-label">汽车类型</div>
+        <checker
+        v-model="carType"
+        default-item-class="car-type-item"
+        selected-item-class="car-type-item-selected"
+        >
+          <checker-item v-for="(item, index) in carTypeList" :key="index" :value="item.value">{{ item.name }}</checker-item>
+        </checker>
+      </div>
       <x-input title="发动机号" ref="engineNumber" label-width="3rem" required v-model="engineNumber" :min="4" :max="4" :is-type="beEngineNumber" placeholder="必填,发动机号码后4位"></x-input>
       <x-input title="原车主姓名" ref="oldCarOwner" label-width="3rem" required v-model="oldCarOwner" placeholder="必填"></x-input>
       <x-input title="新车主姓名" ref="newCarOwner" label-width="3rem" required v-model="newCarOwner" placeholder="必填"></x-input>
@@ -24,12 +34,16 @@
       <popup v-model="showNotice" position="bottom">
         <div class="notice-list">
           <h3 class="notice-title">受理范围：</h3>
-          <p>9座以下（含9座）使用性质为小型客车的国产或合资车辆可办理市内过户和迁出提档业务。进口小型客车和轻型、微型货车可办理市内过户业务。</p>
-          <p class="color">PS：预约货车业务指标有限期可随意选择</p>
-          <p class="mt10">使用性质为非营运、营转非、出租转非、预约出租转非的小型客车可办理市内内过户和迁出提档业务，使用性质为非营运、营转非、货运的轻型、微型货车可办理市内过户业务。</p>
+          <p>9座以下（含9座）车辆类型为小型客车（含新能源车）的国产或合资车辆可办理市内过户和迁出提档业务，进口小型客车（含新能源）办理市内过户业务。</p>
+          <p class="color">PS：进口车迁出业务暂未开通</p>
+          <p class="mt10">使用性质为非营运、营转非、出租转非、预约出租转非的小型客车可办理市内过户和迁出提档业务</p>
           <p class="color">PS：办理业务过程不能改变车辆的使用性质</p>
-          <p class="mt10">办理车辆的所有人身份证证明号码必须为与原车主证件号码一致，站点无法办理变更业务，不符合的需要先到分所办理变更手续后两个工作日再预约本站。</p>
-          <p class="mt10">预约本站迁出业务，请在上一宗车管业务（过户、变更、补证、解押）办结后20天再预约。</p>
+          <p class="mt10">车辆类型为轻型、微型货车（含新能源）的国产或合资车辆可办理市内过户和迁出业务，进口轻型、微型货车（含新能源）办理市内过户业务。</p>
+          <p class="color">PS：进口车迁出业务暂未开通</p>
+          <p class="mt10">使用性质为非营运、营转非、货运的轻型、微型货车可办理市内过户和迁出提档业务。</p>
+          <p class="color">PS：货运性质车辆转移登记时可变更性质为“营转非”</p>
+          <p class="mt10">办理车辆的所有人身份证证明号码必须为与原车主证件号码一致，站点无法办理变更业务，不符合的需要先到分所办理变更手续一个工作日后再预约本站。</p>
+          <p>预约本站迁出业务，请在上一宗车管业务（过户、变更、补证、解押）办结后20天再预约。</p>
           <p class="color">PS：市内过户业务不受此影响</p>
 
           <h3 class="notice-title mt10">预约时间：</h3>
@@ -39,15 +53,15 @@
           <h3 class="notice-title mt10">所需资料：</h3>
           <p>1.车辆行驶证<span class="color">（市内过户：年审当月有效；迁出提档：年审有效期到次月）</span></p>
           <p>2.车辆登记证<span class="color">（身份证明信息需和证件一致，需要升位或三证合一的请先到分所办理）</span></p>
-          <p>3. 新车主身份证原件和复印件<span class="color">（证件需要有5个工作日有效期）</span> </p>
-          <p>4.限牌城市指标书<span class="color">（如指标有效期不足三个工作日，建议到分所办理）</span></p>
+          <p>3.新车主身份证原件和复印件<span class="color">（证件需要有5个工作日有效期）</span> </p>
+          <p>4.指标书<span class="color">（需要有3个工作日有效期，迁入地没有限号标准则不需提供）</span></p>
           <p>5.非迁入地户口需要居住证原件和复印件<span class="color">（一个月以上有效期；证件信息模糊需提供居住信息表）</span></p>
           <p>6.若新车主是单位/公司，需要提供：</p>
           <p class="pl10">①营业执照原件<span class="color">（证件需要有1个月以上有效期）</span></p>
           <p class="pl10">②营业执照复印件<span class="color">（复印件需盖单位公章）</span></p>
           <p class="pl10">③委托书<span class="color">（需盖单位公章及委托时间在有效期内）</span></p>
           <p class="pl10">④被委托人身份证原件和复印件<span class="color">（证件需要有5个工作日有效期）</span></p>
-          <p>7.若原车主是单位/公司需要提供业务委托书<span class="color">（盖公章）</span>和<span class="color">增值税发票</span>。</p>
+          <p>7.若原车主是单位/公司需要提供<span class="color">业务委托书（盖公章）</span>和<span class="color">增值税发票</span>。</p>
         </div>
         <div style="padding: 15px;">
           <x-button @click.native="showNotice = false" type="primary"> 知晓并关闭 </x-button>
@@ -114,7 +128,12 @@ export default {
       carNumber: '',
       showNotice: true,
       isRead: true,
-      mark: ''
+      mark: '',
+      carType: '',
+      carTypeList: [
+        { name: '小型客车', value: 'car' },
+        { name: '轻微型货车', value: 'van' }
+      ]
     }
   },
   methods: {
@@ -171,6 +190,7 @@ export default {
           carNumber: this.carNumber,
           carname: this.carname,
           carId: this.carId,
+          carType: this.carType,
           engineNumber: this.engineNumber,
           oldCarOwner: this.oldCarOwner,
           newCarOwner: this.newCarOwner,
@@ -203,7 +223,11 @@ export default {
         return false
       }
 
-      if (this.oldCarOwner && this.newCarOwner && this.carname && this.carId.length > 2 && this.newCarDocumentNumber && this.contactName && this.contactPhone && this.engineNumber && this.immigrationAddress.length > 0) {
+      if (this.carType === '') {
+        this.showToast = true
+        this.toastMsg = '请选择汽车类型'
+        return false
+      } else if (this.oldCarOwner && this.newCarOwner && this.carname && this.carId.length > 2 && this.newCarDocumentNumber && this.contactName && this.contactPhone && this.engineNumber && this.immigrationAddress.length > 0) {
         if (this.$refs.oldCarOwner.valid && this.$refs.newCarOwner.valid && this.$refs.carname.valid && this.$refs.carId.valid && this.$refs.newCarDocumentNumber.valid && this.$refs.contactName.valid && this.$refs.contactPhone.valid && this.$refs.engineNumber.valid) {
           return true
         }
@@ -301,5 +325,37 @@ export default {
 
 .mt10{
   margin-top: 10px;
+}
+
+.car-type{
+    margin-left: 20px;
+    height: 40px;
+    width: 730px;
+    display: flex;
+    align-content: center;
+    line-height: 40px;
+  }
+  .car-type-label {
+  text-align: center;
+  border-radius: 3px;
+  
+  margin-right: 6px;
+}
+.car-type-item{
+  height: 26px;
+  line-height: 26px;
+  border: 2px solid #ccc;
+  background-color: #fff;
+  border-radius: 5px;
+  margin-left: 10px;
+  padding: 0 5px;
+}
+.car-type-item-selected {
+  //background: #ffffff url(../assets/demo/checker/active.png) no-repeat right bottom;
+  border-color: #ff4a00;
+  
+}
+.car-type{
+  border-top: 1px solid #D9D9D9;
 }
 </style>
