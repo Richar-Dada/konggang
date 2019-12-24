@@ -114,7 +114,7 @@ export function checkCarId (value) {
  * @param {string} 
  */
 export function checkEngineNumber (value) {
-  const regStr = /\w{4}/
+  const regStr = /\w{6}/
   if (regStr.test(value)) {
     return {
       valid: true,

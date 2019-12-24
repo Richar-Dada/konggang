@@ -17,7 +17,7 @@
           <checker-item v-for="(item, index) in carTypeList" :key="index" :value="item.value">{{ item.name }}</checker-item>
         </checker>
       </div>
-      <x-input title="发动机号" ref="engineNumber" label-width="3rem" required v-model="engineNumber" :min="4" :max="4" :is-type="beEngineNumber" placeholder="必填,发动机号码后4位"></x-input>
+      <x-input title="发动机号" ref="engineNumber" label-width="3rem" required v-model="engineNumber" :min="6" :max="6" :is-type="beEngineNumber" placeholder="必填,发动机号码后6位"></x-input>
       <x-input title="原车主姓名" ref="oldCarOwner" label-width="3rem" required v-model="oldCarOwner" placeholder="必填"></x-input>
       <x-input title="新车主姓名" ref="newCarOwner" label-width="3rem" required v-model="newCarOwner" placeholder="必填"></x-input>
       <x-address class="x-address" title="迁入地" ref="immigrationAddress" v-model="immigrationAddress" placeholder="请选择地址" raw-value :list="addressData" hide-district></x-address>
