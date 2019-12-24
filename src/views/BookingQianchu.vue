@@ -17,7 +17,7 @@
           <checker-item v-for="(item, index) in carTypeList" :key="index" :value="item.value">{{ item.name }}</checker-item>
         </checker>
       </div>
-      <x-input title="发动机号" ref="engineNumber" label-width="3rem" required v-model="engineNumber" :min="6" :max="6" :is-type="beEngineNumber" placeholder="必填,发动机号码后6位"></x-input>
+      <x-input title="车架号" ref="carNumber" label-width="3rem" required v-model="carNumber" :min="6" :max="6" :is-type="beCarNumber" placeholder="必填,车架号码后6位"></x-input>
       <x-input title="原车主姓名" ref="oldCarOwner" label-width="3rem" required v-model="oldCarOwner" placeholder="必填"></x-input>
       <x-input title="新车主姓名" ref="newCarOwner" label-width="3rem" required v-model="newCarOwner" placeholder="必填"></x-input>
       <x-address class="x-address" title="迁入地" ref="immigrationAddress" v-model="immigrationAddress" placeholder="请选择地址" raw-value :list="addressData" hide-district></x-address>
@@ -227,8 +227,8 @@ export default {
         this.showToast = true
         this.toastMsg = '请选择汽车类型'
         return false
-      } else if (this.oldCarOwner && this.newCarOwner && this.carname && this.carId.length > 2 && this.newCarDocumentNumber && this.contactName && this.contactPhone && this.engineNumber && this.immigrationAddress.length > 0) {
-        if (this.$refs.oldCarOwner.valid && this.$refs.newCarOwner.valid && this.$refs.carname.valid && this.$refs.carId.valid && this.$refs.newCarDocumentNumber.valid && this.$refs.contactName.valid && this.$refs.contactPhone.valid && this.$refs.engineNumber.valid) {
+      } else if (this.oldCarOwner && this.newCarOwner && this.carname && this.carId.length > 2 && this.newCarDocumentNumber && this.contactName && this.contactPhone && this.carNumber && this.immigrationAddress.length > 0) {
+        if (this.$refs.oldCarOwner.valid && this.$refs.newCarOwner.valid && this.$refs.carname.valid && this.$refs.carId.valid && this.$refs.newCarDocumentNumber.valid && this.$refs.contactName.valid && this.$refs.contactPhone.valid && this.$refs.carNumber.valid) {
           return true
         }
         this.showToast = true
