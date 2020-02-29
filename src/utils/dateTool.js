@@ -28,7 +28,7 @@ const qianchuholiday = [
   '12月1日', '12月7日', '12月8日', '12月15日', '12月14日', '12月22日', '12月21日', '12月28日', '12月29日', '1月1日'
 ]
 
-export function getSchedulDateGuohu () {
+export function getSchedulDateGuohu() {
   let d = new Date()
   let year = d.getFullYear()
   let m = d.getMonth() + 1
@@ -42,12 +42,11 @@ export function getSchedulDateGuohu () {
     } else {
       flag = !flag
     }
-
     if (year % 4 === 0 && m === 2) {
       m = m + Math.floor((date / 29))
       if (m >= 13) { m = 1; year += 1 }
       if (date === 1) { date = 2 }
-      if (date === 29) {
+      if (date >= 29) {
         date = 1
         flag = true
       }
@@ -92,7 +91,7 @@ export function getSchedulDateGuohu () {
   return result
 }
 
-export function getSchedulDateQianchu () {
+export function getSchedulDateQianchu() {
   let d = new Date()
   let year = d.getFullYear()
   let m = d.getMonth() + 1
@@ -112,7 +111,7 @@ export function getSchedulDateQianchu () {
       m = m + Math.floor((date / 29))
       if (m >= 13) { m = 1; year += 1 }
       if (date === 1) { date = 2 }
-      if (date === 29) {
+      if (date >= 29) {
         date = 1
         flag = true
       }
