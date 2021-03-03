@@ -1,8 +1,7 @@
 <template>
   <div id="app">
-    <transition>
-      <router-view></router-view>
-    </transition>
+    <p>网站服务已关闭，请使用空港小程序</p>
+    <img src="/static/code2.jpg" />
   </div>
 </template>
 
@@ -19,5 +18,17 @@ export default {
 
 body {
   background-color: #ffffff;
+  text-align: center;
+}
+
+p {
+  font-size: 18px;
+  margin-top: 100px;
+  margin-bottom: 20px;
+}
+
+image {
+  width: 344px;
+  height: 392px;
 }
 </style>
